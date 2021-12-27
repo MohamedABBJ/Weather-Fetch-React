@@ -1,3 +1,7 @@
+body{
+    background-color: white;
+}
+
 .title{
     color: blue;
     text-align: center; 
@@ -17,7 +21,7 @@
 
 .elements{
     border: solid black;
-    position: relative;
+    position: absolute;
     display: flex;
     flex-wrap: wrap;
     width: 45%;
@@ -31,6 +35,24 @@
     width: 35%;
     text-align: center;
 }
+
+.weatherExtras{
+    color: red;
+    position: relative;
+    bottom: 130px;
+    display: flex;
+    flex-wrap: wrap;
+    border:solid black 5px;
+    width: 5%;
+    font-size: 20px;
+    left:26%;
+    justify-content: center;
+}
+
+.weatherExtras > p{
+    height: 2px;
+}
+
 
 
 .submitCountry{
