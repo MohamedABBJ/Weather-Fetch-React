@@ -1,0 +1,46 @@
+.title{
+    color: blue;
+    text-align: center; 
+    left:0;
+    right:0;
+    bottom: 150px;
+    position: relative;
+    animation-name:title;
+    animation-duration:0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes title{
+    0% {bottom:150px;}
+    100% {bottom:0px;}
+}
+
+.elements{
+    border: solid black;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 45%;
+    justify-content: center;
+    left: 25%;
+
+}
+
+.elements > p{
+    margin-top: 5%;
+    width: 35%;
+    text-align: center;
+}
+
+
+.submitCountry{
+    position: relative;
+    text-align: center;
+    bottom: 0px;
+}
+.countryimg{
+    position: relative;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    text-align: center;
+}
