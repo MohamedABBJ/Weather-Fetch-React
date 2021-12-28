@@ -1,5 +1,27 @@
-body{
-    background-color: white;
+.backgroundImg{
+    background: url(./Assets/background.jpg) no-repeat center fixed;
+    height: 100%
+}
+
+
+.allElements{
+    position: relative;
+    border: solid black;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    padding-top: 7%;
+    padding-bottom:7%;
+    bottom: 600px;
+    animation-name:allElements;
+    animation-duration:3s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes allElements{
+    0% {bottom: 600px;}
+    100% {bottom: -120px;}
 }
 
 .title{
@@ -7,62 +29,80 @@ body{
     text-align: center; 
     left:0;
     right:0;
-    bottom: 150px;
+    bottom: 218px;
     position: relative;
-    animation-name:title;
-    animation-duration:0.5s;
-    animation-fill-mode: forwards;
 }
 
-@keyframes title{
-    0% {bottom:150px;}
-    100% {bottom:0px;}
-}
 
 .elements{
-    border: solid black;
     position: absolute;
     display: flex;
     flex-wrap: wrap;
-    width: 45%;
+    width: 30%;
     justify-content: center;
-    left: 25%;
+    left: 32%;
+    border: solid black;
+    margin-top: 12%;
+    height: 50px;
 
 }
 
 .elements > p{
-    margin-top: 5%;
     width: 35%;
     text-align: center;
 }
 
 .weatherExtras{
-    color: red;
     position: relative;
-    bottom: 130px;
+    bottom: 220px;
     display: flex;
     flex-wrap: wrap;
-    border:solid black 5px;
-    width: 5%;
+    width: 50%;
     font-size: 20px;
-    left:26%;
-    justify-content: center;
 }
 
 .weatherExtras > p{
-    height: 2px;
+    width: 85%;
+    padding-top: 0;
+    height: 1px;
+    margin-left: 15%;
 }
-
-
+.weatherExtras > h1{
+    margin-bottom: 0;
+    margin-left: 20px;
+}
 
 .submitCountry{
-    position: relative;
     text-align: center;
-    bottom: 0px;
+    margin-left: -0.2%;
+    margin-right: 0.5%;
+    margin-top: 9%;
+    right: 5px;
 }
-.countryimg{
+.submitCountry > form > input{
+    height: 30px;
+    width: 100%;
+}
+
+.countryimg > img{
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    width: 100px;
+    height: 70px;
+    left: 80%;
+    bottom: 78%;
+    border: solid black;
+}
+
+.weatherType{
     position: relative;
-    padding-top: 4%;
-    padding-bottom: 4%;
+    border: solid black;
+    bottom: 280px;
+    justify-content: center;
+    width: 40%;
     text-align: center;
 }
+
