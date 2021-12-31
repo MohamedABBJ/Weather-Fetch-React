@@ -15,23 +15,24 @@ export default function App() {
           countryBox +
           "&units=metric&appid=c916e991cc31e02e0ab1b62115ef3e8f"
       );
-      console.log(response)
-      /*const response2 = await axios.get(
-        CORS +
-          "https://timeapi.io/api/Time/current/coordinate?latitude="+response.data.coord.lat+"&longitude="+response.data.coord.lon
-      );*/
+      console.log(response);
+      const response2 = await axios.get(
+        "https://api.ipgeolocation.io/timezone?apiKey=91856cb6afd04efb82a02ef44b5d2b27&lat=" +
+          response.data.coord.lat +
+          "&long=" +
+          response.data.coord.lon
+      );
+      console.log(response2);
       setCountryData({
         countryName: response.data.name,
+        countryNameAbv:response.data.sys.country,
         countryTemperature: Math.round(response.data.main.temp),
         countryWeatherType: response.data.weather[`0`].main,
-        countryImg:
-          "https://flagcdn.com/w640/" +
-          response.data.sys.country.toLowerCase() +
-          ".png",
+        countryImg: response.data.sys.country.toLowerCase(),
         countryWeatherIcon: response.data.weather[`0`].icon,
-        /*countryDate: response2.data.date,
-        countryTime: response2.data.time,
-        countryDayOfWeek: response2.data.dayOfWeek*/
+        countryDate: response2.data.date,
+        countryTime: response2.data.time_12,
+        countryDayOfWeek: (response2.data.date_time_txt).split(",",1),
       });
     } catch (error) {
       alert("The country you set doesn't exist in the OpenWeather Database");
@@ -41,62 +42,68 @@ export default function App() {
   const handleInput = (event) => {
     event.preventDefault();
     extractData();
-    WeatherElements()
+    WeatherElements();
   };
 
-  let BackgroundImg = () =>{
-    return(
-      <img src="./Assets/background.jpg" alt="" />
-    )
-  }
-
-  let CountryFlag = () => {
+  const CountryFlag = () => {
+    if(countryData.countryTime !== undefined){
+      var countryFlagImg =  "https://flagcdn.com/w640/" + countryData.countryImg +".png"
+    }
+    else{
+      countryFlagImg = ""
+    }
     return (
       <>
-        <img src="" alt="" srcSet={countryData.countryImg} />
+        <img src={countryFlagImg} alt="" width={100}/>
       </>
     );
   };
 
   let WeatherExtraElements = () => {
-
-    if(countryData.countryDayOfWeek != undefined){
-      var countryDay = countryData.countryDayOfWeek
-      var countryTodayDate = countryData.countryDate
-      var countryTodayTime = countryData.countryTime
-      console.log("ACCEDI")
+      
+    if(countryData.countryTime !== undefined){
+      var countryNameDef = countryData.countryName
+      var countryNameAbvDef = countryData.countryNameAbv
+      var countryTimeDef = countryData.countryTime
+      var countryDateDef = countryData.countryDate
+      var countryDayOfWeekDef = countryData.countryDayOfWeek
     }
     else{
-      countryDay = ""
-      countryTodayDate = ""
-      countryTodayTime = ""
+      countryNameDef = ""
+      countryNameAbvDef = ""
+      countryTimeDef = ""
+      countryDateDef = ""
+      countryDayOfWeekDef = ""
     }
-
-    console.log(countryData.countryDayOfWeek)
-
 
     return (
       <div className="weatherExtras">
-        <h1>{countryData.countryName}</h1>
-        <p>Date</p>
-        <p>{countryDay + " " + countryTodayDate + " " + countryTodayTime}</p>
+        <h1>{countryNameDef + " " +countryNameAbvDef}</h1>
+        <p id="Date">{countryDayOfWeekDef+" "+countryDateDef}</p>
+        <p>{countryTimeDef}</p>
       </div>
     );
   };
 
   let WeatherElements = () => {
+    if(countryData.countryTime !== undefined){
+      var temperature = "Temperature"
+      var weatherType = "Weather Type"
+      var weatherIcon = "http://openweathermap.org/img/wn/" + countryData.countryWeatherIcon +"@2x.png"
+    }
+    else{
+      temperature = ""
+      weatherType = ""
+      weatherIcon = ""
+    }
     return (
       <>
-        <p>Temperature</p>
+        <p>{temperature}</p>
         <p id="temp">{countryData.countryTemperature}</p>
         <div className="weatherType">
-          <p>Weather Type</p>
+          <p>{weatherType}</p>
           <img
-            src={
-              "http://openweathermap.org/img/wn/" +
-              countryData.countryWeatherIcon +
-              "@2x.png"
-            }
+            src={weatherIcon}
             width={100}
             alt=""
           />
@@ -108,9 +115,17 @@ export default function App() {
 
   return (
     <>
-      <div className="backgroundImg">
-          <BackgroundImg/>
       <div className="allElements">
+        <div className="countryimg">
+          <CountryFlag />
+        </div>
+        <div className="elements">
+          <WeatherElements />
+        </div>
+        <div>
+          <WeatherExtraElements />
+        </div>
+
         <div className="title">
           <div className="submitCountry">
             <form action="" onSubmit={handleInput}>
@@ -123,19 +138,6 @@ export default function App() {
             </form>
           </div>
         </div>
-
-        <div className="countryimg">
-          <CountryFlag />
-        </div>
-
-        <div className="elements">
-          <WeatherElements />
-        </div>
-
-        <div>
-          <WeatherExtraElements />
-        </div>
-      </div>
       </div>
     </>
   );
