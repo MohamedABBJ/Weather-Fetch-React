@@ -59,20 +59,20 @@ body{
 
 .weatherExtras{
     position: absolute;
-    top: 0px;
-    display: flex;
-    flex-wrap: wrap;
+    left: 0px;
+    bottom: 340px;
     font-size: 20px;
 }
 
 .weatherExtras > p{
     width: 85%;
     height: 1px;
-    margin-left: 5%;
+    margin-left: 10%;
 }
 
 #Date{
     margin-top: 0;
+    padding-bottom: 10px;
     
 }
 
