@@ -3,7 +3,8 @@ import "../Styles/weather.css";
 
 let WeatherElements = (props) => {
   if (props.countryTimeV !== undefined) {
-
+    var countryTimeSunsetDef =  props.countryTimeSunsetV;
+    var countryTimeSunriseDef =  props.countryTimeSunriseV;
     var countryNameDef = props.countryNameV;
     var countryNameAbvDef = props.countryNameAbvV;
     var countryTimeDef = props.countryTimeV;
@@ -15,7 +16,15 @@ let WeatherElements = (props) => {
       "http://openweathermap.org/img/wn/" +
       props.countryWeatherIconV +
       "@2x.png";
+    var sunsetTime = new Date(countryTimeSunsetDef*1000).toLocaleTimeString()
+    var sunriseTime = new Date(countryTimeSunriseDef*1000).toLocaleTimeString()
+    var sunset = "Sunset"
+    var sunrise = "Sunrise"
   } else {
+    sunset = ""
+    sunrise = ""
+    countryTimeSunsetDef =  ""
+    countryTimeSunriseDef = ""
     countryNameDef = "";
     countryNameAbvDef = "";
     countryTimeDef = "";
@@ -25,6 +34,7 @@ let WeatherElements = (props) => {
     weatherType = "";
     weatherIcon = "";
   }
+
   return (
     <>
       <div className="weatherExtras">
@@ -35,10 +45,18 @@ let WeatherElements = (props) => {
 
       <p>{temperature}</p>
       <p id="temp">{props.countryTempV}</p>
+
       <div className="weatherType">
         <p>{weatherType}</p>
         <img src={weatherIcon} width={100} alt="" />
         <p id="weather">{props.countryWeatherTypeV}</p>
+      </div>
+
+      <div className="weatherSunsetSunrise">
+          <p>{sunset}</p>
+          <p>{sunsetTime}</p>
+          <p>{sunrise}</p>
+          <p>{sunriseTime}</p>
       </div>
     </>
   );
