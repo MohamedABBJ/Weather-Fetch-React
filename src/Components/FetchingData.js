@@ -4,7 +4,7 @@ import "../Styles/weather.css";
 import CountryFlag from "./CountryFlag";
 import WeatherElements from "./WeatherElements";
 
-export default function App(props) {
+export default function App() {
   const [countryBox, setcountryBox] = useState("");
   const [countryData, setCountryData] = useState({});
 
@@ -23,6 +23,9 @@ export default function App(props) {
           response.data.coord.lon
       );
       setCountryData({
+        countryTimezone : response.data.timezone,
+        countryTimeSunset : response.data.sys.sunset,
+        countryTimeSunrise : response.data.sys.sunrise,
         countryName: response.data.name,
         countryNameAbv: response.data.sys.country,
         countryTemperature: Math.round(response.data.main.temp),
@@ -47,10 +50,15 @@ export default function App(props) {
     <>
       <div className="allElements">
         <div className="countryimg">
-          <CountryFlag countryImgV={countryData.countryImg} />
+          <CountryFlag 
+          countryImgV={countryData.countryImg} 
+          countryTimeV={countryData.countryTime}/>
         </div>
         <div className="elements">
           <WeatherElements
+            countryTimezoneV = {countryData.countryTimezone}
+            countryTimeSunsetV = {countryData.countryTimeSunset}
+            countryTimeSunriseV = {countryData.countryTimeSunrise}
             countryTimeV={countryData.countryTime}
             countryTempV={countryData.countryTemperature}
             countryWeatherIconV={countryData.countryWeatherIcon}
@@ -58,8 +66,7 @@ export default function App(props) {
             countryNameV={countryData.countryName}
             countryNameAbvV={countryData.countryNameAbv}
             countryDateV={countryData.countryDate}
-            countryDayOfWeekV={countryData.countryDayOfWeek}
-          />
+            countryDayOfWeekV={countryData.countryDayOfWeek}/>
         </div>
 
         <div className="title">
