@@ -114,4 +114,50 @@ body{
     position: absolute;
 }
 
+.removeFirstMessage{
+    border: solid black;
+    border-radius: 20px;
+    background: rgba(45, 143, 89, 0.6);
+    opacity: 0;
+    position: absolute;
+    bottom: 100px;
+    animation-name: finishMessage;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+}
+.removeFirstMessage > h1{
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+}
+
+@keyframes finishMessage {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+.firstMessage{
+    border: solid black;
+    border-radius: 20px;
+    background: rgba(45, 143, 89, 0.6);
+    opacity: 0;
+    position: absolute;
+    bottom: 100px;
+    animation-name: startMessage;
+    animation-delay: 1s;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+.firstMessage > h1{
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+}
+
+@keyframes startMessage {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
 
