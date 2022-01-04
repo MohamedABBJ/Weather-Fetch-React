@@ -36,15 +36,19 @@ export default function App() {
         countryTime: response2.data.time_12,
         countryDayOfWeek: response2.data.date_time_txt.split(",", 1),
       });
+      console.log(countryData.countryWeatherIcon)
     } catch (error) {
       alert("The country you set doesn't exist in the OpenWeather Database");
     }
   };
 
+
   const handleInput = (event) => {
     event.preventDefault();
     extractData();
   };
+
+  
 
   return (
     <>
