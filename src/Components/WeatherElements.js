@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../Styles/weather.css";
-import FetchingData from "./FetchingData"
 import CloudyIcon from "../Styles/Assets/cloudy-day-1.svg";
 import ClearDayIcon from "../Styles/Assets/day.svg";
 import RainyIcon from "../Styles/Assets/rainy-7.svg";
@@ -64,7 +63,7 @@ let WeatherElements = (props) => {
     weatherIcon = RainyIcon;
   }
 
-/* Going to make this later add a timer in seconds to the time of every country
+/* Going to make this later add a timer in seconds to the time of every countryy
   const firstUpdate = useRef(true)
 
   useEffect(() => {
