@@ -1,6 +1,87 @@
 body{
-    background: url(./Assets/background.jpg) no-repeat;
+    background-color: black;
 }
+
+.background-img{
+    position: absolute;
+    margin-top: -8px;
+    margin-left: -8px;
+    width: 100%;
+    height: 100%;
+    background:url(./Assets/background.jpg) no-repeat;
+    background-size: cover;
+    filter: brightness(0.8);
+}
+
+.background-cloudy{
+    position: absolute;
+    margin-top: -8px;
+    margin-left: -8px;
+    width: 100%;
+    height: 100%;
+    background:url(./Assets/cloudy-background.jpg) no-repeat;
+    background-size: cover;
+    animation-name: backgroundTransition;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    filter: brightness(0.8) blur(2px);
+}
+
+.background-clear{
+    position: absolute;
+    margin-top: -8px;
+    margin-left: -8px;
+    width: 100%;
+    height: 100%;
+    background:url(./Assets/clear-background.jpg) no-repeat;
+    background-size: cover;
+    animation-name: backgroundTransition2;
+    animation-duration: 2s;
+    filter: brightness(0.8) blur(2px);
+}
+
+.background-snowy{
+    position: absolute;
+    margin-top: -8px;
+    margin-left: -8px;
+    width: 100%;
+    height: 100%;
+    background:url(./Assets/snowy-background.png) no-repeat;
+    background-size: cover;
+    animation-name: backgroundTransition3;
+    animation-duration: 2s;
+    filter: brightness(0.8) blur(2px);
+}
+
+.background-rainy{
+    position: absolute;
+    margin-top: -8px;
+    margin-left: -8px;
+    width: 100%;
+    height: 100%;
+    background:url(./Assets/rainy-background.jfif) no-repeat;
+    background-size: cover;
+    animation-name: backgroundTransition4;
+    animation-duration: 2s;
+    filter: brightness(0.8) blur(2px);
+}
+
+@keyframes backgroundTransition{
+   0%{opacity: 0;}
+   100%{opacity: 1;}
+}
+@keyframes backgroundTransition2{
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+ }
+ @keyframes backgroundTransition3{
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+ }
+ @keyframes backgroundTransition4{
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+ }
 
 @font-face {
     font-family: "Coda";

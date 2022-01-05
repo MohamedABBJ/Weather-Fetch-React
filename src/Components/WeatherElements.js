@@ -1,19 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../Styles/weather.css";
+import FetchingData from "./FetchingData"
 import CloudyIcon from "../Styles/Assets/cloudy-day-1.svg";
 import ClearDayIcon from "../Styles/Assets/day.svg";
 import RainyIcon from "../Styles/Assets/rainy-7.svg";
 import SnowyIcon from "../Styles/Assets/snowy-6.svg";
 
 let WeatherElements = (props) => {
-  const [everySecond, seteverySecond] = useState(0)
-
-
-  useEffect(() => {
-    setTimeout(() => {
-      seteverySecond((everySecond) => everySecond + 1)
-    }, 1000);
-  }, [props.countryTimeV])
+  const [backgroundClass, setbackgroundClass] = useState("")
+  //const [everySecondTime, seteverySecondTime] = useState(0)
 
 
   if (props.countryTimeV !== undefined) {
@@ -38,6 +33,7 @@ let WeatherElements = (props) => {
     var sunrise = "Sunrise";
     var firstMessageRender = "removeFirstMessage";
     var weatherTypeData = props.countryWeatherTypeV;
+    var timer = true
   } else {
     weatherTypeData = "";
     sunset = "";
@@ -68,19 +64,45 @@ let WeatherElements = (props) => {
     weatherIcon = RainyIcon;
   }
 
+/* Going to make this later add a timer in seconds to the time of every country
+  const firstUpdate = useRef(true)
 
-  console.log(props.countryWeatherIconV);
+  useEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false
+      return
+    }
+    setInterval(() => {
+      seteverySecond(
+        everySecond => (everySecond + 1)
+      )
+    }, 1000);
+  }, [countryNameDef])
+
+  var timeMinutes = parseInt(countryTimeDef.slice(3,6))
+
+  var countryTimeDefS = parseInt(countryTimeDef.slice(6,8)) + everySecond
+
+  if(countryTimeDefS > 60){
+    seteverySecond(0)
+    countryTimeDefS = 0 
+    console.log("accedi")
+  }
+
+  console.log(countryTimeDefS)
+  console.log(everySecond)
+
+*/
   return (
-    <>
+    <> 
       <div className="weatherExtras">
         <h1>{countryNameDef + " " + countryNameAbvDef}</h1>
         <p id="Date">{countryDayOfWeekDef + " " + countryDateDef}</p>
-        <p>{everySecond}</p>
+        <p>{countryTimeDef}</p>
       </div>
-
       <p>{temperature}</p>
       <p id="temp">{props.countryTempV}</p>
-
+    
       <div className="weatherType">
         <p>{weatherType}</p>
         <img src={weatherIcon} width={100} alt="" />
@@ -99,6 +121,7 @@ let WeatherElements = (props) => {
         <h1>Format (city name or country) + , + 2 letter country code</h1>
         <h1>Example: Florida, US</h1>
       </div>
+      
     </>
   );
 };
