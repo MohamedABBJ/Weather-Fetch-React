@@ -7,7 +7,7 @@ import WeatherElements from "./WeatherElements";
 export default function App() {
   const [countryBox, setcountryBox] = useState("");
   const [countryData, setCountryData] = useState({});
-
+  var backgroundClass = "background-img"
   const extractData = async () => {
     try {
       const response = await axios.get(
@@ -48,10 +48,19 @@ export default function App() {
     extractData();
   };
 
-  
+  if (countryData.countryWeatherType === "Clouds") {
+    backgroundClass = "background-cloudy"
+  } else if (countryData.countryWeatherType === "Clear") {
+    backgroundClass = "background-clear"
+  } else if (countryData.countryWeatherType === "Snow") {
+    backgroundClass = "background-snowy"
+  } else if (countryData.countryWeatherType === "Rain") {
+    backgroundClass = "background-rainy"
+  }
 
   return (
     <>
+     <div className={backgroundClass}></div>
       <div className="allElements">
         <div className="countryimg">
           <CountryFlag 
