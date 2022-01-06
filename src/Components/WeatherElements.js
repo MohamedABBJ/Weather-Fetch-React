@@ -26,8 +26,8 @@ let WeatherElements = (props) => {
     var firstMessageRender = "removeFirstMessage";
     var weatherTypeData = props.countryWeatherTypeV;
     var timer = true
-    var countryTimeDefS = countryTimeDef.slice
-  } else {
+    
+    } else {
     weatherTypeData = "";
     sunset = "";
     sunrise = "";
@@ -38,7 +38,7 @@ let WeatherElements = (props) => {
     weatherIcon = "";
     firstMessageRender = "firstMessage";
   }
-
+  
   if (weatherTypeData === "Clouds") {
     weatherTypeData = "Cloudy";
     weatherIcon = CloudyIcon;
@@ -52,31 +52,6 @@ let WeatherElements = (props) => {
     weatherIcon = RainyIcon;
   }
 
-  /*
-  const firstUpdate = useRef(true)
-  
-  useEffect(() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false
-      return
-    }
-    setInterval(() => {
-      if(countryTimeDefSCount > 60){
-        countryTimeDef = 0 
-        console.log("accedi")
-      }
-      seteverySecond(
-        everySecond => (everySecond + 1)
-      )
-    }, 1000);
-  }, [countryTimeSunsetDef])
-
-  var countryTimeDefSCount = everySecond + countryTimeDefS
-
-
-
-const [everySecond, seteverySecond] = useState(countryTimeDefS)
-*/
   return (
     <> 
       <p>{temperature}</p>
