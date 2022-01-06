@@ -129,8 +129,8 @@ body{
 .title{
     position:absolute;
     text-align: center; 
-    position: relative;
-    bottom: 365px;
+    top: -160px;
+    width: 100%;
 }
 
 .elements{
@@ -275,16 +275,61 @@ body{
     right: 0;
 }
 
+.fiveDayForecastHide{
+    opacity: 0;
+}
+
 .fiveDayForecast{
     border: solid black;
-    height: 250px;
-    width: 250px;
+    height: 230px;
+    width: 230px;
+    position: relative;
+    top: 100px;
+    left: 95px;
+}
+.elementsFiveDayForecastUpColumn{
+    display: flex;
+    flex-wrap: wrap;
+}
+.elementsFiveDayForecastUpColumn > div{
+    margin-left: 100px;
+}
+
+.elementsFiveDayForecastDownColumn{
+    display: flex;
+    flex-wrap: wrap;
+}
+.elementsFiveDayForecastDownColumn > div{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.fiveDayForecast > img{
     position: absolute;
-    color:blue;
-    padding: 0px;
+    top: 40px;
+    left: 70px;
+    
 }
 
 .fiveDayForecast > p{
+    position: absolute;
     margin-top: 0px;
     margin-bottom: 0px;
+}
+#fiveDayForecastDayOfWeek{
+    top: 10px;
+    left: 10px;
+    padding: 0px;
+    border: solid black;
+}
+
+#fiveDayForecastTemperature{
+    bottom: 0px;
+    right: 0px;
+    color: blue;
+    padding: 10px;
+}
+#fiveDayForecastWeatherType{
+    bottom: 87px;
+    left: 92px;
 }
