@@ -101,7 +101,22 @@ body{
     animation-fill-mode: forwards;
     color: black;
     border: solid black;
-    bottom: -100px;
+    bottom: -110px;
+}
+.allElementsFiveDayForecast{
+    background: rgba(0,212,255,0.4);
+    font-family: "Coda";
+    position:relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    height: 600px;
+    animation-name:allElements;
+    animation-duration:0.8s;
+    animation-fill-mode: forwards;
+    color: black;
+    border: solid black;
+    bottom: -60px;
 }
 
 
@@ -115,7 +130,7 @@ body{
     position:absolute;
     text-align: center; 
     position: relative;
-    bottom: 160px;
+    bottom: 365px;
 }
 
 .elements{
@@ -126,6 +141,17 @@ body{
     left: 0px;
     right: 0px;
     bottom: 50px;
+}
+
+.elementsHide{
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    left: 0px;
+    right: 0px;
+    bottom: 50px;
+    opacity: 0;
 }
 
 .elements > p{
@@ -242,3 +268,23 @@ body{
     100% {opacity: 1;}
 }
 
+.button5DayForecast{
+    opacity: 1;
+    position: absolute;
+    top: 100px;
+    right: 0;
+}
+
+.fiveDayForecast{
+    border: solid black;
+    height: 250px;
+    width: 250px;
+    position: absolute;
+    color:blue;
+    padding: 0px;
+}
+
+.fiveDayForecast > p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
