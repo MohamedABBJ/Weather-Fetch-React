@@ -4,6 +4,7 @@ import "../Styles/weather.css";
 import CountryFlag from "./CountryFlag";
 import WeatherElements from "./WeatherElements";
 import FiveDayForecast from "./5DayForecast";
+import WeatherElements2 from "./WeatherElements2";
 
 export default function App() {
   const [countryBox, setcountryBox] = useState("");
@@ -20,6 +21,7 @@ export default function App() {
   const [weatherThirdDay, setweatherThirdDay] = useState({});
   const [weatherFourthDay, setweatherFourthDay] = useState({});
   const [weatherFifthDay, setweatherFifthDay] = useState({});
+  const [btnStateFiveDayForecast, setbtnStateFiveDayForecast] = useState("buttonHide5DayForecast")
 
   var backgroundClass = "background-img";
   const extractData = async () => {
@@ -90,6 +92,7 @@ export default function App() {
     event.preventDefault();
     extractData();
     setdisabled5DaysBtn(false);
+    setbtnStateFiveDayForecast("button5DayForecast")
   };
 
   const handle5DaysButton = (press) => {
@@ -97,7 +100,6 @@ export default function App() {
     setelementsTodayForecast("elementsHide");
     setelementsFiveDayForecast("allElementsFiveDayForecast");
     sethideElementFiveDayForecast("")
-    alert("a");
     setdisabled5DaysBtn(true);
     setdisabledBtn(false);
   };
@@ -107,7 +109,6 @@ export default function App() {
     setelementsTodayForecast("elements");
     setelementsFiveDayForecast("allElements");
     sethideElementFiveDayForecast("fiveDayForecastHide")
-    alert("a");
     setdisabled5DaysBtn(false);
     setdisabledBtn(true);
   };
@@ -137,14 +138,19 @@ export default function App() {
             countryTimezoneV={countryData.countryTimezone}
             countryTimeSunsetV={countryData.countryTimeSunset}
             countryTimeSunriseV={countryData.countryTimeSunrise}
-            countryTimeV={countryData.countryTime}
             countryTempV={countryData.countryTemperature}
             countryWeatherIconV={countryData.countryWeatherIcon}
             countryWeatherTypeV={countryData.countryWeatherType}
-            countryNameV={countryData.countryName}
-            countryNameAbvV={countryData.countryNameAbv}
-            countryDateV={countryData.countryDate}
-            countryDayOfWeekV={countryData.countryDayOfWeek}
+            countryTimeV={countryData.countryTime}
+          />
+        </div>
+        <div>
+          <WeatherElements2
+             countryNameV={countryData.countryName}
+             countryNameAbvV={countryData.countryNameAbv}
+             countryTimeV={countryData.countryTime}
+             countryDateV={countryData.countryDate}
+             countryDayOfWeekV={countryData.countryDayOfWeek}
           />
         </div>
 
@@ -165,7 +171,6 @@ export default function App() {
           countryWeatherFifthDayV = {weatherFifthDay.countryWeatherFifthDay}
           countryWeatherFifthDayIconV = {weatherFifthDay.countryWeatherFifthDayIcon}
           countryWeatherFifthDayTemperatureV = {weatherFifthDay.countryWeatherFifthDayTemperature}
-
           />
         </div>
 
@@ -181,7 +186,7 @@ export default function App() {
             </form>
           </div>
         </div>
-        <div className="button5DayForecast">
+        <div className={btnStateFiveDayForecast}>
           <button disabled={disabled5DaysBtn} onClick={handle5DaysButton}>
             5 DAYS
           </button>

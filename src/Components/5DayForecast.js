@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import CloudyIcon from "../Styles/Assets/cloudy-day-1.svg";
 import ClearDayIcon from "../Styles/Assets/day.svg";
 import RainyIcon from "../Styles/Assets/rainy-7.svg";
@@ -30,6 +29,9 @@ let FiveDayForecast = (props) => {
   return (
     <>
     <div className="elementsFiveDayForecastUpColumn">
+      <div className="fiveDayForecastTitle">
+        <h1>5 Day Forecast</h1>
+      </div>
         <div className="fiveDayForecast">
             <p id="fiveDayForecastDayOfWeek">today</p>
             <img src={countryWeatherTodayIconDef} width={100} alt="" />
