@@ -348,3 +348,11 @@ body{
     bottom: 87px;
     left: 92px;
 }
+
+#hideTime{
+    opacity: 0;
+}
+#showTime{
+    opacity: 1;
+}
+
