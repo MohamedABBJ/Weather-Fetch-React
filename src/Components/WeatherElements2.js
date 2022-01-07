@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import moment from "moment"
 import "../Styles/weather.css";
 
 let WeatherElements2 = (props) =>{
@@ -37,7 +38,7 @@ let WeatherElements2 = (props) =>{
       seteveryMinute(countryTimeDefM)
       seteveryHour(countryTimeDefH)
       settimeAmPm(countryTimeDefPmAm)
-    }, [countryTimeDef])
+    }, [countryTimeDef , countryTimeDefS, countryTimeDefPmAm, countryTimeDefH, countryTimeDefM])
   
     useEffect(() => {
   
@@ -52,28 +53,26 @@ let WeatherElements2 = (props) =>{
               everySecond => (everySecond + 1)
             )
           }, 1000);
-          timer = false
       }
     }, [timer])
     
   
     if(everySecond >= 60){
       seteverySecond(0)
-      seteveryMinute(countryTimeDefM + 1)
-    }else if(everyMinute > 60){
-      seteveryHour(countryTimeDefH + 1)
+      seteveryMinute(countryTimeDefM => countryTimeDefM + 1)
+    }else if(everyMinute >= 60){
+      console.log("a")
+      seteveryMinute(0)
+      seteveryHour(countryTimeDefH => countryTimeDefH + 1)
+    }else if (everyHour > 12 && timeAmPm === "AM"){
+      seteveryHour(countryTimeDefH => countryTimeDefH = 1)
     }
-    else if(everyHour > 12 && timeAmPm === "AM"){
-      seteveryHour(1)
-    }
-  
-
 
     return(
         <div className="weatherExtras">
         <h1>{countryNameDef + " " + countryNameAbvDef}</h1>
         <p id="Date">{countryDayOfWeekDef + " " + countryDateDef}</p>
-        <p id={timeState}>{countryTimeDef.slice(0,2) + ":"+ everyMinute + ":" + everySecond + " " + timeAmPm}</p>
+        <p id={timeState}>{everyHour + ":"+ everyMinute + ":" + everySecond + " " + timeAmPm}</p>
       </div>
     )
 }

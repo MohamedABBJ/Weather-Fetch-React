@@ -156,6 +156,7 @@ export default function App() {
 
         <div className ={hideElementFiveDayForecast}>
           <FiveDayForecast 
+          countryDateV={countryData.countryDate}
           countryWeatherTodayV = {weatherToday.countryWeatherToday}
           countryWeatherTodayIconV = {weatherToday.countryWeatherTodayIcon}
           countryWeatherTodayTemperatureV = {weatherToday.countryWeatherTodayTemperature}
