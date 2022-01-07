@@ -17,6 +17,8 @@ let WeatherElements = (props) => {
       "http://openweathermap.org/img/wn/" +
       props.countryWeatherIconV +
       "@2x.png";
+    var countryTemperatureDef = props.countryTempV
+    var temperatureInCelsius = "°C"
     var sunsetTime = new Date(countryTimeSunsetDef * 1000).toLocaleTimeString();
     var sunriseTime = new Date(
       countryTimeSunriseDef * 1000
@@ -36,6 +38,8 @@ let WeatherElements = (props) => {
     temperature = "";
     weatherType = "";
     weatherIcon = "";
+    temperatureInCelsius = ""
+    countryTemperatureDef = ""
     firstMessageRender = "firstMessage";
   }
   
@@ -54,13 +58,13 @@ let WeatherElements = (props) => {
 
   return (
     <> 
-      <p>{temperature}</p>
-      <p id="temp">{props.countryTempV}</p>
+      <h2>{temperature}</h2>
+      <h2 id="temp">{countryTemperatureDef + "" + temperatureInCelsius}</h2>
     
       <div className="weatherType">
-        <p>{weatherType}</p>
+        <h2>{weatherType}</h2>
         <img src={weatherIcon} width={100} alt="" />
-        <p id="weather">{weatherTypeData}</p>
+        <h2 id="weather">{weatherTypeData}</h2>
       </div>
 
       <div className="weatherSunsetSunrise">

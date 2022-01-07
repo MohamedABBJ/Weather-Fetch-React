@@ -181,6 +181,7 @@ export default function App() {
               <input
                 type="text"
                 value={countryBox}
+                placeholder="Type a country or location you want to obtain the weather here"
                 onChange={(e) => setcountryBox(e.target.value)}
               />
               <input type="hidden" />
@@ -188,10 +189,10 @@ export default function App() {
           </div>
         </div>
         <div className={btnStateFiveDayForecast}>
-          <button disabled={disabled5DaysBtn} onClick={handle5DaysButton}>
+          <button className="button5dayForecast" disabled={disabled5DaysBtn} onClick={handle5DaysButton}>
             5 DAYS
           </button>
-          <button disabled={disabledBtn} onClick={handleTodayButton}>
+          <button className="buttonTodayForecast" disabled={disabledBtn} onClick={handleTodayButton}>
             Today
           </button>
         </div>

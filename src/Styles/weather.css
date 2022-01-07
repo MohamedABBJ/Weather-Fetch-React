@@ -96,6 +96,7 @@ body{
     margin-right: auto;
     width: 1000px;
     height: 500px;
+    border-radius: 20px;
     animation-name:allElements;
     animation-duration:0.8s;
     animation-fill-mode: forwards;
@@ -111,6 +112,7 @@ body{
     margin-right: auto;
     width: 1000px;
     height: 600px;
+    border-radius: 20px;
     animation-name:allElements;
     animation-duration:0.8s;
     animation-fill-mode: forwards;
@@ -126,11 +128,60 @@ body{
     100% {transform:scale(1) rotate(0deg);}
 }
 
+.button5dayForecast{
+    padding: 5px 10px;
+    border: 3px solid rgba(0, 16, 19, 0.5);
+    border-radius: 50px;
+    background: rgba(0,212,255,0.4);
+}
+.buttonTodayForecast{
+    padding: 5px 10px;
+    border: 3px solid rgba(0, 16, 19, 0.5);
+    border-radius: 50px;
+    background: rgba(0,212,255,0.4);
+}
+
+.buttonTodayForecast:disabled{
+    background: rgba(0, 44, 53, 0.4);
+}
+.button5dayForecast:disabled{
+    background: rgba(0, 44, 53, 0.4);
+}
+.button5dayForecast:hover:enabled{
+    background: rgba(232, 232, 232, 0.4);
+}
+.buttonTodayForecast:hover:enabled{
+    background: rgba(232, 232, 232, 0.4);
+}
+
 .title{
     position:absolute;
     text-align: center; 
     top: -160px;
     width: 100%;
+}
+
+input[type="text"] {
+    color: rgb(255, 255, 255);
+    background: rgb(0, 111, 133);
+  
+}
+
+::placeholder{
+    color: white;
+    text-align: center;
+}
+
+.submitCountry{
+    position: absolute;
+    margin-top: 119px;
+    right: 48px;
+    width: 90%;
+    border-right: 14px solid black;
+    border-left: 4px solid black;
+    border-top: 5px solid black;
+    border-bottom: 2px solid black;
+    border-radius: 10px;
 }
 
 .elements{
@@ -202,12 +253,6 @@ body{
     margin-left: 20px;
 }
 
-.submitCountry{
-    position: absolute;
-    margin-top: 121px;
-    right: 5px;
-    width: 100%;
-}
 
 .submitCountry > form > input{
     height: 30px;
@@ -354,5 +399,8 @@ body{
 }
 #showTime{
     opacity: 1;
+}
+#temp{
+    padding-left: 10px;
 }
 
