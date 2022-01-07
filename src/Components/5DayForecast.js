@@ -3,9 +3,11 @@ import CloudyIcon from "../Styles/Assets/cloudy-day-1.svg";
 import ClearDayIcon from "../Styles/Assets/day.svg";
 import RainyIcon from "../Styles/Assets/rainy-7.svg";
 import SnowyIcon from "../Styles/Assets/snowy-6.svg";
+import moment from "moment"
 
 let FiveDayForecast = (props) => {
   if (props.countryWeatherTodayV !== undefined) {
+    var countryDateDef = props.countryDateV;
     var countryWeatherTodayDef = props.countryWeatherTodayV;
     var countryWeatherTodayIconDef =
       "http://openweathermap.org/img/wn/" +
@@ -23,7 +25,28 @@ let FiveDayForecast = (props) => {
     var countryWeatherFourthDayTemperatureDef= props.countryWeatherFourthDayTemperatureV 
     var countryWeatherFifthDayDef= props.countryWeatherFifthDayV 
     var countryWeatherFifthDayIconDef= "http://openweathermap.org/img/wn/"+props.countryWeatherFifthDayIconV+"@2x.png"
-    var countryWeatherFifthDayTemperatureDef= props.countryWeatherFifthDayTemperatureV 
+    var countryWeatherFifthDayTemperatureDef= props.countryWeatherFifthDayTemperatureV
+    var dayDate = countryDateDef.slice(8,10)
+    var daySecondDate = parseInt(countryDateDef.slice(8,10)) + 1
+    var daySeconDateToString = daySecondDate.toString()
+    var dayThirdDate = parseInt(countryDateDef.slice(8,10)) + 2
+    var dayThirdToString = dayThirdDate.toString()
+    var dayFourthDate = parseInt(countryDateDef.slice(8,10)) + 3
+    var dayFourthDateToString = dayFourthDate.toString()
+    var dayFifthDate = parseInt(countryDateDef.slice(8,10)) + 4
+    var dayFiftDateToString = dayFifthDate.toString()
+    var monthDate = countryDateDef.slice(5,7)
+    var yearDate = countryDateDef.slice(0,4)
+    var todayDate = yearDate + "/" + monthDate + "/" + dayDate
+    var secondDayDate = yearDate + "/" + monthDate + "/" + daySeconDateToString
+    var thirdDayDate = yearDate + "/" + monthDate + "/" + dayThirdToString
+    var fourthDayDate = yearDate + "/" + monthDate + "/" + dayFourthDateToString
+    var fifthDayDate = yearDate + "/" + monthDate + "/" + dayFiftDateToString
+    var countryDateTodayDay = moment(todayDate).format('dddd')
+    var countryDateSecondDay= moment(secondDayDate).format('dddd')
+    var countryDateThirdDay = moment(thirdDayDate).format('dddd')
+    var countryDateFourthDay = moment(fourthDayDate).format('dddd')
+    var countryDateFifthDay = moment(fifthDayDate).format('dddd')
 
   }
   return (
@@ -33,13 +56,13 @@ let FiveDayForecast = (props) => {
         <h1>5 Day Forecast</h1>
       </div>
         <div className="fiveDayForecast">
-            <p id="fiveDayForecastDayOfWeek">today</p>
+            <p id="fiveDayForecastDayOfWeek">{countryDateTodayDay}</p>
             <img src={countryWeatherTodayIconDef} width={100} alt="" />
             <p id="fiveDayForecastWeatherType">{countryWeatherTodayDef}</p>
             <p id="fiveDayForecastTemperature">{countryWeatherTodayTemperatureDef+"°C"}</p>
         </div>
         <div className="fiveDayForecast">
-            <p id="fiveDayForecastDayOfWeek">tomorrow</p>
+            <p id="fiveDayForecastDayOfWeek">{countryDateSecondDay}</p>
             <img src={countryWeatherSecondDayIconDef} width={100} alt="" />
             <p id="fiveDayForecastWeatherType">{countryWeatherSecondDayDef}</p>
             <p id="fiveDayForecastTemperature">{countryWeatherSecondDayTemperatureDef+"°C"}</p>
@@ -48,19 +71,19 @@ let FiveDayForecast = (props) => {
 
     <div className="elementsFiveDayForecastDownColumn">
         <div className="fiveDayForecast">
-            <p id="fiveDayForecastDayOfWeek">third day</p>
+            <p id="fiveDayForecastDayOfWeek">{countryDateThirdDay}</p>
             <img src={countryWeatherThirdDayIconDef} width={100} alt="" />
             <p id="fiveDayForecastWeatherType">{countryWeatherThirdDayDef}</p>
             <p id="fiveDayForecastTemperature">{countryWeatherThirdDayTemperatureDef+"°C"}</p>
         </div>
         <div className="fiveDayForecast">
-            <p id="fiveDayForecastDayOfWeek">forth day</p>
+            <p id="fiveDayForecastDayOfWeek">{countryDateFourthDay}</p>
             <img src={countryWeatherFourthDayIconDef} width={100} alt="" />
             <p id="fiveDayForecastWeatherType">{countryWeatherFourthDayDef}</p>
             <p id="fiveDayForecastTemperature">{countryWeatherFourthDayTemperatureDef+"°C"}</p>
         </div>
         <div className="fiveDayForecast">
-            <p id="fiveDayForecastDayOfWeek">fifth day</p>
+            <p id="fiveDayForecastDayOfWeek">{countryDateFifthDay}</p>
             <img src={countryWeatherFifthDayIconDef} width={100} alt="" />
             <p id="fiveDayForecastWeatherType">{countryWeatherFifthDayDef}</p>
             <p id="fiveDayForecastTemperature">{countryWeatherFifthDayTemperatureDef+"°C"}</p>
