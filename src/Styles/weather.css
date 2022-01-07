@@ -104,6 +104,31 @@ body{
     border: solid black;
     bottom: -110px;
 }
+
+.allElementsTransitionAnim{
+    background: rgba(0,212,255,0.4);
+    font-family: "Coda";
+    position:relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    height: 0px;
+    border-radius: 20px;
+    animation-name: allElementsTransitionAnim;
+    animation-duration:1s;
+    animation-fill-mode: forwards;
+    color: black;
+    border: solid black;
+    bottom: -60px;
+    opacity: 1;
+}
+
+@keyframes allElementsTransitionAnim{
+    0% {bottom: -60px; height: 600px;}
+    50% {height: 0px;}
+    100% {bottom: -110px; height: 500px;}
+}
+
 .allElementsFiveDayForecast{
     background: rgba(0,212,255,0.4);
     font-family: "Coda";
@@ -119,6 +144,29 @@ body{
     color: black;
     border: solid black;
     bottom: -60px;
+}
+
+.allElementsFiveDayForecastTransition{
+    background: rgba(0,212,255,0.4);
+    font-family: "Coda";
+    position:relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    height: 600px;
+    border-radius: 20px;
+    animation-name:allElementsFiveDayTransitionAnim;
+    animation-duration:1s;
+    animation-fill-mode: forwards;
+    color: black;
+    border: solid black;
+    bottom: -110px;
+}
+
+@keyframes allElementsFiveDayTransitionAnim{
+    0% {bottom: -110px; height: 500px;}
+    50% {height: 0px;}
+    100% {bottom: -60px ;height: 600px;}
 }
 
 
@@ -192,6 +240,15 @@ input[type="text"] {
     left: 0px;
     right: 0px;
     bottom: 50px;
+    opacity: 0;
+    animation-name: elementsShowAnim;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+}
+
+@keyframes elementsShowAnim{
+    0%{opacity: 0;}
+    100%{opacity: 1;}
 }
 
 .elementsHide{
@@ -404,3 +461,14 @@ input[type="text"] {
     padding-left: 10px;
 }
 
+.allElementsFiveDayForecastShow{
+    opacity: 0;
+    animation-name: allElementsFiveDayForecastShowAnim;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes  allElementsFiveDayForecastShowAnim{
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}

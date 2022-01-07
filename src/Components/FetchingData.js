@@ -98,17 +98,26 @@ export default function App() {
   const handle5DaysButton = (press) => {
     press.preventDefault();
     setelementsTodayForecast("elementsHide");
-    setelementsFiveDayForecast("allElementsFiveDayForecast");
-    sethideElementFiveDayForecast("")
+
+    //Setting animation wait 1 sec
+    setTimeout(() => {
+        sethideElementFiveDayForecast("allElementsFiveDayForecastShow")
+     }, 1000);
+    setelementsFiveDayForecast("allElementsFiveDayForecastTransition");
     setdisabled5DaysBtn(true);
     setdisabledBtn(false);
   };
 
   const handleTodayButton = (press) => {
     press.preventDefault();
-    setelementsTodayForecast("elements");
-    setelementsFiveDayForecast("allElements");
     sethideElementFiveDayForecast("fiveDayForecastHide")
+    //Setting animation wait 1 sec
+
+    setTimeout(() => {
+      setelementsTodayForecast("elements");
+   }, 1000);
+
+    setelementsFiveDayForecast("allElementsTransitionAnim");
     setdisabled5DaysBtn(false);
     setdisabledBtn(true);
   };
