@@ -101,7 +101,22 @@ body{
     animation-fill-mode: forwards;
     color: black;
     border: solid black;
-    bottom: -100px;
+    bottom: -110px;
+}
+.allElementsFiveDayForecast{
+    background: rgba(0,212,255,0.4);
+    font-family: "Coda";
+    position:relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    height: 600px;
+    animation-name:allElements;
+    animation-duration:0.8s;
+    animation-fill-mode: forwards;
+    color: black;
+    border: solid black;
+    bottom: -60px;
 }
 
 
@@ -114,8 +129,8 @@ body{
 .title{
     position:absolute;
     text-align: center; 
-    position: relative;
-    bottom: 160px;
+    top: -160px;
+    width: 100%;
 }
 
 .elements{
@@ -126,6 +141,17 @@ body{
     left: 0px;
     right: 0px;
     bottom: 50px;
+}
+
+.elementsHide{
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    left: 0px;
+    right: 0px;
+    bottom: 50px;
+    opacity: 0;
 }
 
 .elements > p{
@@ -142,7 +168,7 @@ body{
 .weatherExtras{
     position: absolute;
     left: 0px;
-    bottom: 340px;
+    top: -28px;
     font-size: 20px;
 }
 
@@ -240,5 +266,93 @@ body{
 @keyframes startMessage {
     0% {opacity: 0;}
     100% {opacity: 1;}
+}
+
+.button5DayForecast{
+    opacity: 1;
+    position: absolute;
+    top: 100px;
+    right: 0;
+}
+.buttonHide5DayForecast{
+    opacity: 0;
+    position: absolute;
+    top: 100px;
+    right: 0;
+}
+
+.fiveDayForecastTitle{
+    right: 400px;
+    font-size: 16px;
+    font-family: "Coda";
+    position: absolute;
+}
+
+.fiveDayForecastHide{
+    opacity: 0;
+}
+
+.fiveDayForecast{
+    background: rgba(17, 87, 100, 0.7);
+    border-radius: 12px;
+    border: solid black;
+    height: 230px;
+    width: 230px;
+    position: relative;
+    top: 100px;
+    left: 95px;
+}
+.elementsFiveDayForecastUpColumn{
+    display: flex;
+    flex-wrap: wrap;
+}
+.elementsFiveDayForecastUpColumn > div{
+    margin-left: 100px;
+}
+
+.elementsFiveDayForecastDownColumn{
+    display: flex;
+    flex-wrap: wrap;
+}
+.elementsFiveDayForecastDownColumn > div{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.fiveDayForecast > img{
+    position: absolute;
+    top: 40px;
+    left: 70px;
+    
+}
+
+.fiveDayForecast > p{
+    position: absolute;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+#fiveDayForecastDayOfWeek{
+    top: 10px;
+    left: 10px;
+    padding: 0px;
+    border: solid black;
+}
+
+#fiveDayForecastTemperature{
+    bottom: 0px;
+    right: 0px;
+    color: blue;
+    padding: 10px;
+}
+#fiveDayForecastWeatherType{
+    bottom: 87px;
+    left: 92px;
+}
+
+#hideTime{
+    opacity: 0;
+}
+#showTime{
+    opacity: 1;
 }
 

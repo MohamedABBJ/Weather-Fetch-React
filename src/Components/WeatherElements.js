@@ -6,18 +6,11 @@ import RainyIcon from "../Styles/Assets/rainy-7.svg";
 import SnowyIcon from "../Styles/Assets/snowy-6.svg";
 
 let WeatherElements = (props) => {
-  const [backgroundClass, setbackgroundClass] = useState("")
-  //const [everySecondTime, seteverySecondTime] = useState(0)
-
 
   if (props.countryTimeV !== undefined) {
     var countryTimeSunsetDef = props.countryTimeSunsetV;
     var countryTimeSunriseDef = props.countryTimeSunriseV;
-    var countryNameDef = props.countryNameV;
-    var countryNameAbvDef = props.countryNameAbvV;
-    var countryTimeDef = props.countryTimeV;
-    var countryDateDef = props.countryDateV;
-    var countryDayOfWeekDef = props.countryDayOfWeekV;
+    var countryTimeDef = props.countryTimeV
     var temperature = "Temperature";
     var weatherType = "Weather Type";
     var weatherIcon =
@@ -33,23 +26,19 @@ let WeatherElements = (props) => {
     var firstMessageRender = "removeFirstMessage";
     var weatherTypeData = props.countryWeatherTypeV;
     var timer = true
-  } else {
+    
+    } else {
     weatherTypeData = "";
     sunset = "";
     sunrise = "";
     countryTimeSunsetDef = "";
     countryTimeSunriseDef = "";
-    countryNameDef = "";
-    countryNameAbvDef = "";
-    countryTimeDef = "";
-    countryDateDef = "";
-    countryDayOfWeekDef = "";
     temperature = "";
     weatherType = "";
     weatherIcon = "";
     firstMessageRender = "firstMessage";
   }
-
+  
   if (weatherTypeData === "Clouds") {
     weatherTypeData = "Cloudy";
     weatherIcon = CloudyIcon;
@@ -63,42 +52,8 @@ let WeatherElements = (props) => {
     weatherIcon = RainyIcon;
   }
 
-/* Going to make this later add a timer in seconds to the time of every countryy
-  const firstUpdate = useRef(true)
-
-  useEffect(() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false
-      return
-    }
-    setInterval(() => {
-      seteverySecond(
-        everySecond => (everySecond + 1)
-      )
-    }, 1000);
-  }, [countryNameDef])
-
-  var timeMinutes = parseInt(countryTimeDef.slice(3,6))
-
-  var countryTimeDefS = parseInt(countryTimeDef.slice(6,8)) + everySecond
-
-  if(countryTimeDefS > 60){
-    seteverySecond(0)
-    countryTimeDefS = 0 
-    console.log("accedi")
-  }
-
-  console.log(countryTimeDefS)
-  console.log(everySecond)
-
-*/
   return (
     <> 
-      <div className="weatherExtras">
-        <h1>{countryNameDef + " " + countryNameAbvDef}</h1>
-        <p id="Date">{countryDayOfWeekDef + " " + countryDateDef}</p>
-        <p>{countryTimeDef}</p>
-      </div>
       <p>{temperature}</p>
       <p id="temp">{props.countryTempV}</p>
     
