@@ -13,6 +13,7 @@ export default function App() {
   const [disabled5DaysBtn, setdisabled5DaysBtn] = useState(true);
   const [elementsTodayForecast, setelementsTodayForecast] =
     useState("elements");
+  const [extraElementsTodayForecast, setextraElementsTodayForecast] = useState("hideExtraElements")
   const [elementsFiveDayForecast, setelementsFiveDayForecast] =
     useState("allElements");
   const [hideElementFiveDayForecast, sethideElementFiveDayForecast] = useState("fiveDayForecastHide")
@@ -22,6 +23,8 @@ export default function App() {
   const [weatherFourthDay, setweatherFourthDay] = useState({});
   const [weatherFifthDay, setweatherFifthDay] = useState({});
   const [btnStateFiveDayForecast, setbtnStateFiveDayForecast] = useState("buttonHide5DayForecast")
+  const [hideCountryImg, sethideCountryImg] = useState("countryImg")
+  const [checkButtonState, setcheckButtonState] = useState(false)
 
   var backgroundClass = "background-img";
   const extractData = async () => {
@@ -88,55 +91,76 @@ export default function App() {
     }
   };
 
+  if(countryData.countryName !== undefined && checkButtonState === false){
+    setbtnStateFiveDayForecast("button5DayForecast")
+    setcheckButtonState(true)
+  }
+
   const handleInput = (event) => {
     event.preventDefault();
     extractData();
     setdisabled5DaysBtn(false);
-    setbtnStateFiveDayForecast("button5DayForecast")
+    setextraElementsTodayForecast("extraElements")
   };
 
   const handle5DaysButton = (press) => {
     press.preventDefault();
     setelementsTodayForecast("elementsHide");
-
+    setdisabled5DaysBtn(true);
+    setdisabledBtn(true);
+    sethideCountryImg("hideCountryImg")
+    setbtnStateFiveDayForecast("buttonHide5DayForecast")
+    setextraElementsTodayForecast("hideExtraElements")
     //Setting animation wait 1 sec
     setTimeout(() => {
+      setextraElementsTodayForecast("extraElements")
+        setbtnStateFiveDayForecast("button5DayForecast")
         sethideElementFiveDayForecast("allElementsFiveDayForecastShow")
+        setdisabledBtn(false);
+        sethideCountryImg("countryImg")
      }, 1000);
     setelementsFiveDayForecast("allElementsFiveDayForecastTransition");
-    setdisabled5DaysBtn(true);
-    setdisabledBtn(false);
   };
 
   const handleTodayButton = (press) => {
     press.preventDefault();
     sethideElementFiveDayForecast("fiveDayForecastHide")
+    setdisabled5DaysBtn(true);
+    setdisabledBtn(true);
+    sethideCountryImg("hideCountryImg")
+    setbtnStateFiveDayForecast("buttonHide5DayForecast")
+    setextraElementsTodayForecast("hideExtraElements")
+    sethideElementFiveDayForecast("allElementsFiveDayForecastHide")
     //Setting animation wait 1 sec
 
     setTimeout(() => {
+      setextraElementsTodayForecast("extraElements")
+      setbtnStateFiveDayForecast("button5DayForecast")
       setelementsTodayForecast("elements");
+      setdisabled5DaysBtn(false);
+      sethideCountryImg("countryImg")
    }, 1000);
 
     setelementsFiveDayForecast("allElementsTransitionAnim");
-    setdisabled5DaysBtn(false);
-    setdisabledBtn(true);
   };
 
   if (countryData.countryWeatherType === "Clouds") {
-    backgroundClass = "background-cloudy";
+      backgroundClass = "background-cloudy";
   } else if (countryData.countryWeatherType === "Clear") {
     backgroundClass = "background-clear";
   } else if (countryData.countryWeatherType === "Snow") {
     backgroundClass = "background-snowy";
   } else if (countryData.countryWeatherType === "Rain") {
     backgroundClass = "background-rainy";
+  } else if(countryData.countryName !== undefined){
+    setbtnStateFiveDayForecast("button5DayForecast")
   }
 
   return (
     <>
       <div className={backgroundClass}></div>
       <div className={elementsFiveDayForecast}>
-        <div className="countryimg">
+        <div className={hideCountryImg}>
           <CountryFlag
             countryImgV={countryData.countryImg}
             countryTimeV={countryData.countryTime}
@@ -153,7 +177,7 @@ export default function App() {
             countryTimeV={countryData.countryTime}
           />
         </div>
-        <div>
+        <div className={extraElementsTodayForecast}>
           <WeatherElements2
              countryNameV={countryData.countryName}
              countryNameAbvV={countryData.countryNameAbv}
