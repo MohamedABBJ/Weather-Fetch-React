@@ -96,6 +96,7 @@ body{
     margin-right: auto;
     width: 1000px;
     height: 500px;
+    border-radius: 20px;
     animation-name:allElements;
     animation-duration:0.8s;
     animation-fill-mode: forwards;
@@ -103,6 +104,32 @@ body{
     border: solid black;
     bottom: -110px;
 }
+
+.allElementsTransitionAnim{
+    background: rgba(0,212,255,0.4);
+    font-family: "Coda";
+    position:relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    height: 600px;
+    border-radius: 20px;
+    animation-name: allElementsTransitionAnim;
+    animation-duration:1s;
+    animation-fill-mode: forwards;
+    color: black;
+    border: solid black;
+    bottom: -60px;
+    opacity: 1;
+    animation-delay: 0.5s;
+}
+
+@keyframes allElementsTransitionAnim{
+    0% {bottom: -60px; height: 600px;}
+    50% {height: 0px;}
+    100% {bottom: -110px; height: 500px;}
+}
+
 .allElementsFiveDayForecast{
     background: rgba(0,212,255,0.4);
     font-family: "Coda";
@@ -111,12 +138,37 @@ body{
     margin-right: auto;
     width: 1000px;
     height: 600px;
+    border-radius: 20px;
     animation-name:allElements;
     animation-duration:0.8s;
     animation-fill-mode: forwards;
     color: black;
     border: solid black;
     bottom: -60px;
+}
+
+.allElementsFiveDayForecastTransition{
+    background: rgba(0,212,255,0.4);
+    font-family: "Coda";
+    position:relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    height: 500px;
+    border-radius: 20px;
+    animation-name:allElementsFiveDayTransitionAnim;
+    animation-duration:1s;
+    animation-fill-mode: forwards;
+    color: black;
+    border: solid black;
+    bottom: -110px;
+    animation-delay: 0.5s;
+}
+
+@keyframes allElementsFiveDayTransitionAnim{
+    0% {bottom: -110px; height: 500px;}
+    50% {height: 0px;}
+    100% {bottom: -60px ;height: 600px;}
 }
 
 
@@ -126,11 +178,60 @@ body{
     100% {transform:scale(1) rotate(0deg);}
 }
 
+.button5dayForecast{
+    padding: 5px 10px;
+    border: 3px solid rgba(0, 16, 19, 0.5);
+    border-radius: 50px;
+    background: rgba(0,212,255,0.4);
+}
+.buttonTodayForecast{
+    padding: 5px 10px;
+    border: 3px solid rgba(0, 16, 19, 0.5);
+    border-radius: 50px;
+    background: rgba(0,212,255,0.4);
+}
+
+.buttonTodayForecast:disabled{
+    background: rgba(0, 44, 53, 0.4);
+}
+.button5dayForecast:disabled{
+    background: rgba(0, 44, 53, 0.4);
+}
+.button5dayForecast:hover:enabled{
+    background: rgba(232, 232, 232, 0.4);
+}
+.buttonTodayForecast:hover:enabled{
+    background: rgba(232, 232, 232, 0.4);
+}
+
 .title{
     position:absolute;
     text-align: center; 
     top: -160px;
     width: 100%;
+}
+
+input[type="text"] {
+    color: rgb(255, 255, 255);
+    background: rgb(0, 111, 133);
+  
+}
+
+::placeholder{
+    color: white;
+    text-align: center;
+}
+
+.submitCountry{
+    position: absolute;
+    margin-top: 119px;
+    right: 48px;
+    width: 90%;
+    border-right: 14px solid black;
+    border-left: 4px solid black;
+    border-top: 5px solid black;
+    border-bottom: 2px solid black;
+    border-radius: 10px;
 }
 
 .elements{
@@ -141,6 +242,10 @@ body{
     left: 0px;
     right: 0px;
     bottom: 50px;
+    opacity: 0;
+    animation-name: elementsShowAnim;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
 }
 
 .elementsHide{
@@ -152,6 +257,19 @@ body{
     right: 0px;
     bottom: 50px;
     opacity: 0;
+    animation-name: elementsHideAnim;
+    animation-fill-mode: forwards;
+    animation-duration: 0.4s;
+}
+
+@keyframes elementsShowAnim{
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+
+@keyframes elementsHideAnim{
+    0%{opacity: 1;}
+    100%{opacity: 0;}
 }
 
 .elements > p{
@@ -163,6 +281,30 @@ body{
     position: absolute;
     top: -300px;
     text-align: center;
+}
+
+.hideExtraElements{
+    animation-duration: 0.3s;
+    animation-name: hideextraElementsAnim;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+.extraElements{
+    animation-duration: 1s;
+    animation-name: extraElementsAnim;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+@keyframes extraElementsAnim {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes hideextraElementsAnim {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
 }
 
 .weatherExtras{
@@ -202,12 +344,6 @@ body{
     margin-left: 20px;
 }
 
-.submitCountry{
-    position: absolute;
-    margin-top: 121px;
-    right: 5px;
-    width: 100%;
-}
 
 .submitCountry > form > input{
     height: 30px;
@@ -215,10 +351,34 @@ body{
 
 }
 
-.countryimg > img{
+.countryImg > img{
+    opacity: 1;
     right: 10px;
     top: 10px;
     position: absolute;
+    animation-name: showCountryImg;
+    animation-fill-mode: forwards;
+    animation-duration: 0.4s;
+}
+
+.hideCountryImg > img{
+    opacity: 0;
+    right: 10px;
+    top: 10px;
+    position: absolute;
+    animation-name: hideCountryImg;
+    animation-fill-mode: forwards;
+    animation-duration: 0.4s;
+}
+
+@keyframes  showCountryImg{
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes  hideCountryImg{
+    0% {opacity: 1;}
+    100% {opacity: 0;}
 }
 
 .removeFirstMessage{
@@ -273,13 +433,31 @@ body{
     position: absolute;
     top: 100px;
     right: 0;
+    animation-fill-mode: forwards;
+    animation-name: button5DayForecastAnim;
+    animation-duration: 0.4s;
 }
+
 .buttonHide5DayForecast{
     opacity: 0;
     position: absolute;
     top: 100px;
     right: 0;
+    animation-fill-mode: forwards;
+    animation-name: buttonHide5DayForecastAnim;
+    animation-duration: 0.3s;
 }
+
+@keyframes button5DayForecastAnim {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes buttonHide5DayForecastAnim {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
 
 .fiveDayForecastTitle{
     right: 400px;
@@ -334,19 +512,22 @@ body{
 #fiveDayForecastDayOfWeek{
     top: 10px;
     left: 10px;
-    padding: 0px;
+    padding: 10px;
     border: solid black;
+    color: white;
+    border-radius: 20px;
 }
 
 #fiveDayForecastTemperature{
     bottom: 0px;
     right: 0px;
-    color: blue;
+    color: white;
     padding: 10px;
 }
 #fiveDayForecastWeatherType{
     bottom: 87px;
-    left: 92px;
+    left: 100px;
+    color: white;
 }
 
 #hideTime{
@@ -355,4 +536,28 @@ body{
 #showTime{
     opacity: 1;
 }
+#temp{
+    padding-left: 10px;
+}
 
+.allElementsFiveDayForecastShow{
+    opacity: 0;
+    animation-name: allElementsFiveDayForecastShowAnim;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+.allElementsFiveDayForecastHide{
+    opacity: 0;
+    animation-name: allElementsFiveDayForecastHideAnim;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes  allElementsFiveDayForecastShowAnim{
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+@keyframes  allElementsFiveDayForecastHideAnim{
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
