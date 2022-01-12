@@ -1,13 +1,17 @@
 import React from 'react'
 
 const CountryFlag = (props) => {
-    if(props.countryTimeV !== undefined){
-      var countryImgDef = "https://flagcdn.com/w640/"+props.countryImgV+".png"
+    const countryImg = "https://flagcdn.com/w640/"+props.countryImgV+".png"
+
+    if(props.countryImgV === undefined){
+      return(
+        <div>{}</div>
+      )
     }
-    else{countryImgDef = ""}
+
     return (
       <>
-      <img src={countryImgDef} alt="" width={100}/>
+      <img src={countryImg} alt='' width={100}/>
       </>
     );
   };

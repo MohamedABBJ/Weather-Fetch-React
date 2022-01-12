@@ -1,118 +1,110 @@
 import React from "react";
-import CloudyIcon from "../Styles/Assets/cloudy-day-1.svg";
-import ClearDayIcon from "../Styles/Assets/day.svg";
-import RainyIcon from "../Styles/Assets/rainy-7.svg";
-import SnowyIcon from "../Styles/Assets/snowy-6.svg";
 import moment from "moment";
 
+const API_URL = "http://openweathermap.org";
+
+
 let FiveDayForecast = (props) => {
-  if (props.countryWeatherTodayV !== undefined) {
-    var countryDateDef = props.countryDateV;
-    var countryWeatherTodayDef = props.countryWeatherTodayV;
-    var countryWeatherTodayIconDef =
-      "http://openweathermap.org/img/wn/" +
-      props.countryWeatherTodayIconV +
-      "@2x.png";
-    var countryWeatherTodayTemperatureDef =
-      props.countryWeatherTodayTemperatureV;
-    var countryWeatherSecondDayDef = props.countryWeatherSecondDayV;
-    var countryWeatherSecondDayIconDef =
-      "http://openweathermap.org/img/wn/" +
-      props.countryWeatherSecondDayIconV +
-      "@2x.png";
-    var countryWeatherSecondDayTemperatureDef =
-      props.countryWeatherSecondDayTemperatureV;
-    var countryWeatherThirdDayDef = props.countryWeatherThirdDayV;
-    var countryWeatherThirdDayIconDef =
-      "http://openweathermap.org/img/wn/" +
-      props.countryWeatherThirdDayIconV +
-      "@2x.png";
-    var countryWeatherThirdDayTemperatureDef =
-      props.countryWeatherThirdDayTemperatureV;
-    var countryWeatherFourthDayDef = props.countryWeatherFourthDayV;
-    var countryWeatherFourthDayIconDef =
-      "http://openweathermap.org/img/wn/" +
-      props.countryWeatherFourthDayIconV +
-      "@2x.png";
-    var countryWeatherFourthDayTemperatureDef =
-      props.countryWeatherFourthDayTemperatureV;
-    var countryWeatherFifthDayDef = props.countryWeatherFifthDayV;
-    var countryWeatherFifthDayIconDef =
-      "http://openweathermap.org/img/wn/" +
-      props.countryWeatherFifthDayIconV +
-      "@2x.png";
-    var countryWeatherFifthDayTemperatureDef =
-      props.countryWeatherFifthDayTemperatureV;
-    var dayDate = countryDateDef.slice(8, 10);
-    var daySecondDate = parseInt(countryDateDef.slice(8, 10)) + 1;
-    var daySeconDateToString = daySecondDate.toString();
-    var dayThirdDate = parseInt(countryDateDef.slice(8, 10)) + 2;
-    var dayThirdToString = dayThirdDate.toString();
-    var dayFourthDate = parseInt(countryDateDef.slice(8, 10)) + 3;
-    var dayFourthDateToString = dayFourthDate.toString();
-    var dayFifthDate = parseInt(countryDateDef.slice(8, 10)) + 4;
-    var dayFiftDateToString = dayFifthDate.toString();
-    var monthDate = countryDateDef.slice(5, 7);
-    var yearDate = countryDateDef.slice(0, 4);
-    var todayDate = yearDate + "/" + monthDate + "/" + dayDate;
-    var secondDayDate = yearDate + "/" + monthDate + "/" + daySeconDateToString;
-    var thirdDayDate = yearDate + "/" + monthDate + "/" + dayThirdToString;
-    var fourthDayDate =
-      yearDate + "/" + monthDate + "/" + dayFourthDateToString;
-    var fifthDayDate = yearDate + "/" + monthDate + "/" + dayFiftDateToString;
-    var countryDateTodayDay = moment(todayDate).format("dddd");
-    var countryDateSecondDay = moment(secondDayDate).format("dddd");
-    var countryDateThirdDay = moment(thirdDayDate).format("dddd");
-    var countryDateFourthDay = moment(fourthDayDate).format("dddd");
-    var countryDateFifthDay = moment(fifthDayDate).format("dddd");
+
+  
+  const allCountryWeatherData = {
+      countryDate : props.countryDateV,
+      countryTodayWeather : props.countryWeatherTodayV,
+      countryTodayWeatherTemperature : props.countryWeatherTodayTemperatureV,
+      countryTomorrowWeather : props.countryWeatherSecondDayV,
+      countryTomorrowWeatherTemperature : props.countryWeatherSecondDayTemperatureV,
+      countryThirdDayWeather : props.countryWeatherThirdDayV,
+      countryThirdDayWeatherTemperature : props.countryWeatherThirdDayTemperatureV,
+      countryFourthDayWeather : props.countryWeatherFourthDayV,
+      countryFourthDayWeatherTemperature : props.countryWeatherFourthDayTemperatureV,
+      countryFifthDayWeather : props.countryWeatherFifthDayV,
+      countryFifthDayWeatherTemperature : props.countryWeatherFifthDayTemperatureV,
+    } 
+
+    if (allCountryWeatherData.countryDate === undefined) {
+      allCountryWeatherData.countryDate = "0"
+    }
+
+    const dayWeatherIcon = new Map([
+      ["Today", `${API_URL}/img/wn/${props.countryWeatherTodayIconV}@2x.png`],
+      ["Second-Day", `${API_URL}/img/wn/${props.countryWeatherSecondDayIconV}@2x.png`],
+      ["Third-Day", `${API_URL}/img/wn/${props.countryWeatherThirdDayIconV}@2x.png`],
+      ["Fourth-Day", `${API_URL}/img/wn/${props.countryWeatherFourthDayIconV}@2x.png`],
+      ["Fifth-Day", `${API_URL}/img/wn/${props.countryWeatherFifthDayIconV}@2x.png`],
+    ])
+
+    const dateObtention = new Map([
+      ["TodayDate",  allCountryWeatherData.countryDate.slice(8, 10)],
+      ["TomorrowDate",  parseInt(allCountryWeatherData.countryDate.slice(8, 10)) + 1],
+      ["ThirdDayDate",  parseInt(allCountryWeatherData.countryDate.slice(8, 10)) + 2],
+      ["FourthDayDate",  parseInt(allCountryWeatherData.countryDate.slice(8, 10)) + 3],
+      ["FifthDayDate",  parseInt(allCountryWeatherData.countryDate.slice(8, 10)) + 4],
+      ["MonthDate",  parseInt(allCountryWeatherData.countryDate.slice(5, 7))],
+      ["YearDate",  parseInt(allCountryWeatherData.countryDate.slice(0, 4))],
+    ])
+
+    const dateFormat = new Map([
+      ["TodayDateFormat" , moment(`${dateObtention.get("YearDate")}/${dateObtention.get("MonthDate")}/${dateObtention.get("TodayDate")}`).format(`dddd`)],
+      ["TomorrowDateFormat" ,  moment(`${dateObtention.get("YearDate")}/${dateObtention.get("MonthDate")}/${dateObtention.get("TomorrowDate")}`).format(`dddd`)],
+      ["ThirdDayDateFormat" , moment(`${dateObtention.get("YearDate")}/${dateObtention.get("MonthDate")}/${dateObtention.get("ThirdDayDate")}`).format(`dddd`)],
+      ["FourthDayDateFormat" , moment(`${dateObtention.get("YearDate")}/${dateObtention.get("MonthDate")}/${dateObtention.get("FourthDayDate")}`).format(`dddd`)],
+      ["FifthDayDateFormat" , moment(`${dateObtention.get("YearDate")}/${dateObtention.get("MonthDate")}/${dateObtention.get("FifthDayDate")}`).format(`dddd`)]
+    ])
+
+  if(props.countryWeatherTodayV === undefined){
+    return(
+      <div>{}</div>
+    )
   }
+
+
   return (
     <>
-      <div className="elementsFiveDayForecastUpColumn">
-        <div className="fiveDayForecastTitle">
+      <div className='elementsFiveDayForecastUpColumn'>
+        <div className='fiveDayForecastTitle'>
           <h1>5 Day Forecast</h1>
         </div>
         <div className="fiveDayForecast">
-          <p id="fiveDayForecastDayOfWeek">{countryDateTodayDay}</p>
-          <img src={countryWeatherTodayIconDef} width={100} alt="" />
-          <p id="fiveDayForecastWeatherType">{countryWeatherTodayDef}</p>
+          <p id="fiveDayForecastDayOfWeek">{dateFormat.get(`TodayDateFormat`)}</p>
+          <img src={dayWeatherIcon.get("Today")} width={100} alt='' />
+          <p id="fiveDayForecastWeatherType">{allCountryWeatherData.countryTodayWeather}</p>
           <p id="fiveDayForecastTemperature">
-            {countryWeatherTodayTemperatureDef + "°C"}
+            {allCountryWeatherData.countryTodayWeatherTemperature + "°C"}
           </p>
         </div>
         <div className="fiveDayForecast">
-          <p id="fiveDayForecastDayOfWeek">{countryDateSecondDay}</p>
-          <img src={countryWeatherSecondDayIconDef} width={100} alt="" />
-          <p id="fiveDayForecastWeatherType">{countryWeatherSecondDayDef}</p>
+          <p id="fiveDayForecastDayOfWeek">{dateFormat.get(`TomorrowDateFormat`)}</p>
+          <img src={dayWeatherIcon.get("Second-Day")} width={100} alt='' />
+          <p id="fiveDayForecastWeatherType">{allCountryWeatherData.countryTomorrowWeather}</p>
           <p id="fiveDayForecastTemperature">
-            {countryWeatherSecondDayTemperatureDef + "°C"}
+            {allCountryWeatherData.countryTomorrowWeatherTemperature + "°C"}
           </p>
         </div>
       </div>
 
       <div className="elementsFiveDayForecastDownColumn">
         <div className="fiveDayForecast">
-          <p id="fiveDayForecastDayOfWeek">{countryDateThirdDay}</p>
-          <img src={countryWeatherThirdDayIconDef} width={100} alt="" />
-          <p id="fiveDayForecastWeatherType">{countryWeatherThirdDayDef}</p>
+          <p id="fiveDayForecastDayOfWeek">{dateFormat.get(`ThirdDayDateFormat`)}</p>
+          <img src={dayWeatherIcon.get("Third-Day")} width={100} alt='' />
+          <p id="fiveDayForecastWeatherType">{allCountryWeatherData.countryThirdDayWeather}</p>
           <p id="fiveDayForecastTemperature">
-            {countryWeatherThirdDayTemperatureDef + "°C"}
+            {allCountryWeatherData.countryThirdDayWeatherTemperature + "°C"}
           </p>
         </div>
         <div className="fiveDayForecast">
-          <p id="fiveDayForecastDayOfWeek">{countryDateFourthDay}</p>
-          <img src={countryWeatherFourthDayIconDef} width={100} alt="" />
-          <p id="fiveDayForecastWeatherType">{countryWeatherFourthDayDef}</p>
+          <p id="fiveDayForecastDayOfWeek">{dateFormat.get(`FourthDayDateFormat`)}</p>
+          <img src={dayWeatherIcon.get("Fourth-Day")} width={100} alt='' />
+          <p id="fiveDayForecastWeatherType">{allCountryWeatherData.countryFourthDayWeather}</p>
           <p id="fiveDayForecastTemperature">
-            {countryWeatherFourthDayTemperatureDef + "°C"}
+            {allCountryWeatherData.countryFourthDayWeatherTemperature + "°C"}
           </p>
         </div>
         <div className="fiveDayForecast">
-          <p id="fiveDayForecastDayOfWeek">{countryDateFifthDay}</p>
-          <img src={countryWeatherFifthDayIconDef} width={100} alt="" />
-          <p id="fiveDayForecastWeatherType">{countryWeatherFifthDayDef}</p>
+          <p id="fiveDayForecastDayOfWeek">{dateFormat.get(`FifthDayDateFormat`)}</p>
+          <img src={dayWeatherIcon.get("Fifth-Day")} width={100} alt='' />
+          <p id="fiveDayForecastWeatherType">{allCountryWeatherData.countryFifthDayWeather}</p>
           <p id="fiveDayForecastTemperature">
-            {countryWeatherFifthDayTemperatureDef + "°C"}
+            {allCountryWeatherData.countryFifthDayWeatherTemperature + "°C"}
           </p>
         </div>
       </div>
