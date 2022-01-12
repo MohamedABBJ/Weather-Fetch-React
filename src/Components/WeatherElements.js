@@ -4,62 +4,59 @@ import ClearDayIcon from "../Styles/Assets/day.svg";
 import RainyIcon from "../Styles/Assets/rainy-7.svg";
 import SnowyIcon from "../Styles/Assets/snowy-6.svg";
 
-const API_URL = "http://openweathermap.org"
-
+const API_URL = "http://openweathermap.org";
 
 let WeatherElements = (props) => {
-  const countryTemperatureDef = props.countryTempV
-  const countryTimeSunriseDef = props.countryTimeSunriseV;
-  const countryTimeSunsetDef = props.countryTimeSunsetV;
-  const sunsetTime = new Date(countryTimeSunsetDef * 1000).toLocaleTimeString();
-  const sunriseTime = new Date(countryTimeSunriseDef * 1000).toLocaleTimeString();
-  
-  
-  const getIcon = () =>{
-    return(
-      `${API_URL}/img/wn/${props.countryWeatherIconV}@2x.png`
-      )}
-      
-  let weatherIcon = getIcon()
+
+  const weatherData = {
+    countryTemperatureDef : props.countryTempV,
+    countryTimeSunriseDef : props.countryTimeSunriseV,
+    countryTimeSunsetDef : props.countryTimeSunsetV,
+  }
+
+  const sunsetTime = new Date(weatherData.countryTimeSunsetDef * 1000).toLocaleTimeString();
+  const sunriseTime = new Date(
+    weatherData.countryTimeSunriseDef * 1000
+  ).toLocaleTimeString();
+
+  const getIcon = () => {
+    return `${API_URL}/img/wn/${props.countryWeatherIconV}@2x.png`;
+  };
+
+  let weatherIcon = getIcon();
   let weatherTypeData = props.countryWeatherTypeV;
-  
-    
-  
-  switch (weatherTypeData){
+
+  switch (weatherTypeData) {
     case `Clouds`:
-      weatherTypeData = `Cloudy`
+      weatherTypeData = `Cloudy`;
       weatherIcon = CloudyIcon;
-      break
+      break;
     case `Clear`:
       weatherIcon = ClearDayIcon;
-      break
+      break;
     case `Snow`:
       weatherTypeData = `Snowy`;
       weatherIcon = SnowyIcon;
-      break
+      break;
     case `Rain`:
-      weatherTypeData = "Rainy";
+      weatherTypeData = `Rainy`;
       weatherIcon = RainyIcon;
-      break
+      break;
     default:
   }
 
-  if(props.countryTimeV === undefined){
-    return(
-      <div>
-        {console.log("Probando")}
-      </div>
-    )
+  if (props.countryTimeV === undefined) {
+    return <div>{console.log("Probando")}</div>;
   }
 
   return (
-    <> 
+    <>
       <h2>{`Temperature`}</h2>
-      <h2 id="temp">{countryTemperatureDef  + `°C`}</h2>
-    
+      <h2 id="temp">{weatherData.countryTemperatureDef + `°C`}</h2>
+
       <div className="weatherType">
         <h2>{`Weather Type`}</h2>
-        <img src={weatherIcon} width={100} alt="" />
+        <img src={weatherIcon} width={100} alt='' />
         <h2 id="weather">{weatherTypeData}</h2>
       </div>
 
@@ -75,7 +72,6 @@ let WeatherElements = (props) => {
         <h1>Format (city name or country) + , + 2 letter country code</h1>
         <h1>Example: Florida, US</h1>
       </div>
-      
     </>
   );
 };

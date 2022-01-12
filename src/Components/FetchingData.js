@@ -7,7 +7,7 @@ import FiveDayForecast from "./5DayForecast";
 import WeatherElements2 from "./WeatherElements2";
 
 export default function App() {
-  const [countryBox, setcountryBox] = useState("");
+  const [countryBox, setcountryBox] = useState('');
   const [countryData, setCountryData] = useState({});
   const [disabledBtn, setdisabledBtn] = useState(true);
   const [disabled5DaysBtn, setdisabled5DaysBtn] = useState(true);
@@ -210,7 +210,7 @@ export default function App() {
 
         <div className="title">
           <div className="submitCountry">
-            <form action="" onSubmit={handleInput}>
+            <form action='' onSubmit={handleInput}>
               <input
                 type="text"
                 value={countryBox}

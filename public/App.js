@@ -15,7 +15,7 @@ let TitleElements = () => {
 };
 
 let SelectCountryBox = () => {
-  const [countryBox, setcountryBox] = useState("");
+  const [countryBox, setcountryBox] = useState('');
   const [countryData, setCountryData] = useState({});
 
   const extractData = async () => {
@@ -48,7 +48,7 @@ let SelectCountryBox = () => {
     return (
       <>
         <div>
-          <img src="" width={130} alt="" srcSet={countryData.countryImg} />
+          <img src='' width={130} alt='' srcSet={countryData.countryImg} />
         </div>
       </>
     );
@@ -70,7 +70,7 @@ let SelectCountryBox = () => {
       <div className="title">
         <TitleElements />
         <div className="submitCountry">
-          <form action="" onSubmit={handleInput}>
+          <form action='' onSubmit={handleInput}>
             <Input
               type="text"
               value={countryBox}
