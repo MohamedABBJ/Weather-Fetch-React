@@ -7,26 +7,27 @@ import FiveDayForecast from "./5DayForecast";
 import WeatherElements2 from "./WeatherElements2";
 
 export default function App() {
-  const [countryBox, setcountryBox] = useState('');
   const [countryData, setCountryData] = useState({});
+  const [weatherToday, setweatherToday] = useState({});
+  const [weatherSecondDay, setweatherSecondDay] = useState({});
+  const [weatherThirdDay, setweatherThirdDay] = useState({});
+  const [weatherFourthDay, setweatherFourthDay] = useState({});
+  const [weatherFifthDay, setweatherFifthDay] = useState({});
   const [disabledBtn, setdisabledBtn] = useState(true);
   const [disabled5DaysBtn, setdisabled5DaysBtn] = useState(true);
+  const [checkButtonState, setcheckButtonState] = useState(false)
+  const [countryBox, setcountryBox] = useState('');
   const [elementsTodayForecast, setelementsTodayForecast] =
     useState("elements");
   const [extraElementsTodayForecast, setextraElementsTodayForecast] = useState("hideExtraElements")
   const [elementsFiveDayForecast, setelementsFiveDayForecast] =
     useState("allElements");
   const [hideElementFiveDayForecast, sethideElementFiveDayForecast] = useState("fiveDayForecastHide")
-  const [weatherToday, setweatherToday] = useState({});
-  const [weatherSecondDay, setweatherSecondDay] = useState({});
-  const [weatherThirdDay, setweatherThirdDay] = useState({});
-  const [weatherFourthDay, setweatherFourthDay] = useState({});
-  const [weatherFifthDay, setweatherFifthDay] = useState({});
   const [btnStateFiveDayForecast, setbtnStateFiveDayForecast] = useState("buttonHide5DayForecast")
   const [hideCountryImg, sethideCountryImg] = useState("countryImg")
-  const [checkButtonState, setcheckButtonState] = useState(false)
 
-  var backgroundClass = "background-img";
+  let  backgroundClass = "background-img";
+
   const extractData = async () => {
     try {
       const response = await axios.get(
