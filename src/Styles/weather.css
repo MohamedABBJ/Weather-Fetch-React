@@ -105,6 +105,7 @@ body{
     bottom: -110px;
 }
 
+
 .allElementsTransitionAnim{
     background: rgba(0,212,255,0.4);
     font-family: "Coda";
@@ -126,6 +127,11 @@ body{
 
 @keyframes allElementsTransitionAnim{
     0% {bottom: -60px; height: 600px;}
+    50% {height: 0px;}
+    100% {bottom: -110px; height: 500px;}
+}
+@keyframes allElementsTransitionAnimMobile{
+    0% {bottom: -60px; height: 1400px;}
     50% {height: 0px;}
     100% {bottom: -110px; height: 500px;}
 }
@@ -154,21 +160,54 @@ body{
     margin-left: auto;
     margin-right: auto;
     width: 1000px;
-    height: 500px;
+    height: 600px;
+    animation-name: allElementsFiveDayTransitionAnim;
+    animation-fill-mode: backwards;
+    animation-duration: 1s;
     border-radius: 20px;
-    animation-name:allElementsFiveDayTransitionAnim;
-    animation-duration:1s;
-    animation-fill-mode: forwards;
     color: black;
     border: solid black;
-    bottom: -110px;
+    bottom: -60px;
     animation-delay: 0.5s;
+}
+
+
+
+@media only screen and (max-width: 800px) {
+    .allElementsFiveDayForecastTransition{
+        animation-name: allElementsFiveDayTransitionAnimMobile;
+        animation-fill-mode: forwards;
+        animation-duration: 1s;
+        height: 500px;
+        bottom: -110px;
+        }
+    }
+
+@media only screen and (max-width: 800px) {
+        .allElementsTransitionAnim{
+            animation-name: allElementsTransitionAnimMobile;
+            animation-fill-mode: forwards;
+            animation-duration: 1s;
+            height: 1500px;
+            }
+        }
+    
+@media only screen and (max-width: 1024px) {
+.allElementsTransitionAnim, .allElements, .allElementsFiveDayForecastTransition {
+        width: 100%;
+    }
 }
 
 @keyframes allElementsFiveDayTransitionAnim{
     0% {bottom: -110px; height: 500px;}
     50% {height: 0px;}
     100% {bottom: -60px ;height: 600px;}
+}
+
+@keyframes allElementsFiveDayTransitionAnimMobile{
+    0% {bottom: -110px; height: 500px;}
+    50% {height: 0px;}
+    100% {bottom: -60px ;height: 1500px;}
 }
 
 
@@ -221,6 +260,12 @@ input[type="text"] {
     color: white;
     text-align: center;
 }
+
+@media only screen and (max-width: 500px) {
+    .title {
+            left: 35px;
+        }
+    }
 
 .submitCountry{
     position: absolute;
@@ -283,6 +328,13 @@ input[type="text"] {
     text-align: center;
 }
 
+@media only screen and (max-width: 443px) {
+    .weatherType {
+            left: 80px;
+            top: -250px;
+        }
+    }
+
 .hideExtraElements{
     animation-duration: 0.3s;
     animation-name: hideextraElementsAnim;
@@ -325,12 +377,19 @@ input[type="text"] {
     bottom: 380px;
     right: 150px;
     display: flex;
-    flex-wrap: wrap;
 }
 
 .weatherSunsetSunrise > p{
     padding-left: 20px;
 }
+
+@media only screen and (max-width: 765px) {
+    .weatherSunsetSunrise{
+        display: block;
+        bottom: 140px;
+        right: 30px;
+        }
+    }
 
 
 #Date{
@@ -561,3 +620,32 @@ input[type="text"] {
     0% {opacity: 1;}
     100% {opacity: 0;}
 }
+@media only screen and (max-width: 940px) {
+    .fiveDayForecastTitle{
+            left: 100px;
+            top: 115px;
+            width: 100%;
+            
+        }
+    }
+
+@media only screen and (max-width: 940px) {
+    .elementsFiveDayForecastUpColumn > div, .elementsFiveDayForecastDownColumn > div {
+            top: 180px;
+            margin-left: 20px;
+            left: 0px;
+        }
+    }
+
+@media only screen and (max-width: 940px) {
+        .elementsFiveDayForecastUpColumn > div{
+                left:  70px;
+                margin-top: 20px;
+            }
+        }
+
+@media only screen and (max-width: 940px) {
+            .elementsFiveDayForecastDownColumn > div{
+                    left:  70px;
+                }
+            }
