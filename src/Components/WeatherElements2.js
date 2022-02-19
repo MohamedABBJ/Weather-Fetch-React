@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, } from 'react'
 import "../Styles/weather.css";
+import "../Styles/weatherMobile.css";
 
 let WeatherElements2 = (props) =>{
   const [everySecond, seteverySecond] = useState(0)

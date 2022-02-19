@@ -60,10 +60,10 @@ let FiveDayForecast = (props) => {
 
   return (
     <>
-      <div className='elementsFiveDayForecastUpColumn'>
-        <div className='fiveDayForecastTitle'>
+      <div className='fiveDayForecastTitle'>
           <h1>5 Day Forecast</h1>
-        </div>
+      </div>
+      <div className='elementsFiveDayForecastUpColumn'>
         <div className="fiveDayForecast">
           <p id="fiveDayForecastDayOfWeek">{dateFormat.get(`TodayDateFormat`)}</p>
           <img src={dayWeatherIcon.get("Today")} width={100} alt='' />

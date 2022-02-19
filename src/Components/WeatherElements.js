@@ -1,4 +1,5 @@
 import "../Styles/weather.css";
+import "../Styles/weatherMobile.css";
 import CloudyIcon from "../Styles/Assets/cloudy-day-1.svg";
 import ClearDayIcon from "../Styles/Assets/day.svg";
 import RainyIcon from "../Styles/Assets/rainy-7.svg";
