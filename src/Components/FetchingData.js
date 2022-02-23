@@ -6,6 +6,9 @@ import CountryFlag from "./CountryFlag";
 import WeatherElements from "./WeatherElements";
 import FiveDayForecast from "./5DayForecast";
 import WeatherElements2 from "./WeatherElements2";
+import Login from "./Login,";
+import UserState from "./UserSate";
+
 
 export default function App() {
   const [countryData, setCountryData] = useState({});
@@ -26,6 +29,7 @@ export default function App() {
   const [hideElementFiveDayForecast, sethideElementFiveDayForecast] = useState("fiveDayForecastHide")
   const [btnStateFiveDayForecast, setbtnStateFiveDayForecast] = useState("buttonHide5DayForecast")
   const [hideCountryImg, sethideCountryImg] = useState("countryImg")
+  const [user, setuser] = useState(null);
 
   let  backgroundClass = "background-img";
 
@@ -160,7 +164,11 @@ export default function App() {
 
   return (
     <>
-      <div className={backgroundClass}></div>
+      <div className={backgroundClass}>
+      <div className="Login">
+         <UserState/>
+        </div>
+      </div>
       <div className={elementsFiveDayForecast}>
         <div className={hideCountryImg}>
           <CountryFlag
@@ -223,6 +231,8 @@ export default function App() {
             </form>
           </div>
         </div>
+
+
         <div className={btnStateFiveDayForecast}>
           <button className="button5dayForecast" disabled={disabled5DaysBtn} onClick={handle5DaysButton}>
             5 DAYS
