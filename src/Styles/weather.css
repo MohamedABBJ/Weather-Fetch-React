@@ -662,3 +662,18 @@ input[type="text"] {
                     left:  90px;
                 }
             }
+
+.login{
+    position: relative;
+    top: -600px;
+    right: 150px;
+}
+
+.chat{
+    position: relative;
+    right: 150px;
+    
+}
+.chatBtn{
+    padding: 10px 120px;
+}

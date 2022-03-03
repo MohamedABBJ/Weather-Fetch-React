@@ -6,8 +6,8 @@ import CountryFlag from "./CountryFlag";
 import WeatherElements from "./WeatherElements";
 import FiveDayForecast from "./5DayForecast";
 import WeatherElements2 from "./WeatherElements2";
-import Login from "./Login,";
 import UserState from "./UserSate";
+import Chat from "./Chat";
 
 
 export default function App() {
@@ -165,9 +165,6 @@ export default function App() {
   return (
     <>
       <div className={backgroundClass}>
-      <div className="Login">
-         <UserState/>
-        </div>
       </div>
       <div className={elementsFiveDayForecast}>
         <div className={hideCountryImg}>
@@ -217,7 +214,12 @@ export default function App() {
           countryWeatherFifthDayTemperatureV = {weatherFifthDay.countryWeatherFifthDayTemperature}
           />
         </div>
-
+        <div className="login">
+         <UserState/>
+        </div>
+        <div className="chat">
+        <Chat/>
+      </div>
         <div className="title">
           <div className="submitCountry">
             <form action='' onSubmit={handleInput}>

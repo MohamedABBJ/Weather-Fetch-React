@@ -1,5 +1,4 @@
 import { auth, provider } from "../Service/firebase"
-import {useAuthState} from 'react-firebase-hooks/auth';
 
 
 const Login = () =>{

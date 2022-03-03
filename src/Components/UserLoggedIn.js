@@ -10,7 +10,7 @@ const UserLoggedIn = () =>{
         <div>
                
             {
-                "Bienvenido " + auth.currentUser.displayName
+                "Welcome " + auth.currentUser.displayName
             }
             <button style={{"marginLeft" : "10px"}} 
             onClick={logout}>
