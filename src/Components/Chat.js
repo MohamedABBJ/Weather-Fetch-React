@@ -1,23 +1,115 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { useEffect, useRef, useState } from "react"
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import "../Styles/weather.css";
+import "../Styles/chat.css";
+import { auth } from "../Service/firebase";
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyChlpA1Mijl5B9a6F16jP_stLt4VB069pA",
-  authDomain: "weather-ce55c.firebaseapp.com",
-  projectId: "weather-ce55c",
-  storageBucket: "weather-ce55c.appspot.com",
-  messagingSenderId: "607099810427",
-  appId: "1:607099810427:web:1fe99a4a15ac6976ac28de",
-  measurementId: "G-PH5DTGC8P8"
-};
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const Chat = () =>{
 
-async function getCities(db) {
-  const citiesCol = collection(db, 'cities');
-  const citySnapshot = await getDocs(citiesCol);
-  const cityList = citySnapshot.docs.map(doc => doc.data());
-  return cityList;
+    const messagesRef = firebase.firestore().collection('messages')
+    const query = messagesRef.orderBy("createdAt").limitToLast(25);
+    const scroll = useRef()
+    const [messages] = useCollectionData(query, {idField: "id"})
+
+    const [expandChat, setexpandChat] = useState(false)
+    const [messageValue, setmessageValue] = useState("")
+
+    const handleChatBtn = (e) =>{
+      e.preventDefault()
+      
+      if(expandChat === false){
+        setexpandChat(true)
+      }else{
+        setexpandChat(false)
+      }
+
+    }
+
+    const handleChatMessage = async (e) =>{
+
+      e.preventDefault()
+      
+      const {uid, photoURL} = auth.currentUser
+
+      await messagesRef.add({
+        text: messageValue,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        userName: auth.currentUser.displayName,
+        uid,
+        photoURL
+      })
+
+      setmessageValue('')
+
+    }
+
+    useEffect(() => {
+      scroll.current.scrollIntoView({behavior:'smooth'})
+    },[messages])
+    
+
+  return(
+    <>
+    <div className="chatComponent">
+      <div className="chat">
+      {messages && messages.map(msg => <ChatMessage message={msg} />)}
+      <span ref={scroll}></span>
+      </div>
+
+      <div className="messageInput">
+      <form action="" onSubmit={handleChatMessage}>
+      
+      <input id="messageBox" disabled={expandChat} value={messageValue} onChange={(e) => setmessageValue(e.target.value)}/>
+
+      <button type="submit">send</button>
+      
+      </form>
+      <button onClick={handleChatBtn}>Chat</button>
+      </div>
+    </div>
+
+    </>
+  )
 }
+
+  const ChatMessage = (props) =>{
+    const {text, photoURL, userName} = props.message
+
+    return(<>
+      <p className="userName">{userName}</p>
+    <div className="message">
+      <img src={photoURL} width="50px" alt="" srcset="" />
+      <p id="messagetext">{text}</p>
+      </div>
+
+    </>)
+
+  }
+
+
+
+export default Chat
+
+/*
+const ChatRoom = ({user = null}) => {
+  const [messages, setMessages] = useState([])
+
+  const db = firebase.firestore()
+  const query = db.collection('messages').orderBy('createdAt').limit(100);
+
+  useEffect(() => {
+    const unsubscribe = query.onSnapshot(querySnapshot =>{
+      const date = querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id}))
+    }
+      second
+    }
+  }, [third])
+  
+  return <ul></ul>
+}
+
+export default ChatRoom */

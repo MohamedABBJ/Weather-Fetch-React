@@ -6,6 +6,8 @@ import CountryFlag from "./CountryFlag";
 import WeatherElements from "./WeatherElements";
 import FiveDayForecast from "./5DayForecast";
 import WeatherElements2 from "./WeatherElements2";
+import UserState from "./UserSate";
+import Chat from "./Chat";
 
 export default function App() {
   const [countryData, setCountryData] = useState({});
@@ -16,18 +18,24 @@ export default function App() {
   const [weatherFifthDay, setweatherFifthDay] = useState({});
   const [disabledBtn, setdisabledBtn] = useState(true);
   const [disabled5DaysBtn, setdisabled5DaysBtn] = useState(true);
-  const [checkButtonState, setcheckButtonState] = useState(false)
-  const [countryBox, setcountryBox] = useState('');
+  const [checkButtonState, setcheckButtonState] = useState(false);
+  const [countryBox, setcountryBox] = useState("");
   const [elementsTodayForecast, setelementsTodayForecast] =
     useState("elements");
-  const [extraElementsTodayForecast, setextraElementsTodayForecast] = useState("hideExtraElements")
+  const [extraElementsTodayForecast, setextraElementsTodayForecast] =
+    useState("hideExtraElements");
   const [elementsFiveDayForecast, setelementsFiveDayForecast] =
     useState("allElements");
-  const [hideElementFiveDayForecast, sethideElementFiveDayForecast] = useState("fiveDayForecastHide")
-  const [btnStateFiveDayForecast, setbtnStateFiveDayForecast] = useState("buttonHide5DayForecast")
-  const [hideCountryImg, sethideCountryImg] = useState("countryImg")
+  const [hideElementFiveDayForecast, sethideElementFiveDayForecast] = useState(
+    "fiveDayForecastHide"
+  );
+  const [btnStateFiveDayForecast, setbtnStateFiveDayForecast] = useState(
+    "buttonHide5DayForecast"
+  );
+  const [hideCountryImg, sethideCountryImg] = useState("countryImg");
+  const [user, setuser] = useState(null);
 
-  let  backgroundClass = "background-img";
+  let backgroundClass = "background-img";
 
   const extractData = async () => {
     try {
@@ -64,45 +72,55 @@ export default function App() {
       });
 
       setweatherToday({
-        countryWeatherToday : response3.data.list[0].weather[`0`].main,
-        countryWeatherTodayIcon : response3.data.list[0].weather[`0`].icon,
-        countryWeatherTodayTemperature : Math.round(response3.data.list[0].main.temp),
-      })
+        countryWeatherToday: response3.data.list[0].weather[`0`].main,
+        countryWeatherTodayIcon: response3.data.list[0].weather[`0`].icon,
+        countryWeatherTodayTemperature: Math.round(
+          response3.data.list[0].main.temp
+        ),
+      });
       setweatherSecondDay({
-        countryWeatherSecondDayIcon : response3.data.list[8].weather[`0`].icon,
-        countryWeatherSecondDayTemperature : Math.round(response3.data.list[8].main.temp),
-        countryWeatherSecondDay : response3.data.list[8].weather[`0`].main,
-      })
+        countryWeatherSecondDayIcon: response3.data.list[8].weather[`0`].icon,
+        countryWeatherSecondDayTemperature: Math.round(
+          response3.data.list[8].main.temp
+        ),
+        countryWeatherSecondDay: response3.data.list[8].weather[`0`].main,
+      });
       setweatherThirdDay({
-        countryWeatherThirdDayIcon : response3.data.list[16].weather[`0`].icon,
-        countryWeatherThirdDayTemperature : Math.round(response3.data.list[16].main.temp),
-        countryWeatherThirdDay : response3.data.list[16].weather[`0`].main,
-      })
+        countryWeatherThirdDayIcon: response3.data.list[16].weather[`0`].icon,
+        countryWeatherThirdDayTemperature: Math.round(
+          response3.data.list[16].main.temp
+        ),
+        countryWeatherThirdDay: response3.data.list[16].weather[`0`].main,
+      });
       setweatherFourthDay({
-        countryWeatherFourthDayIcon : response3.data.list[24].weather[`0`].icon,
-        countryWeatherFourthDayTemperature : Math.round(response3.data.list[24].main.temp),
-        countryWeatherFourthDay : response3.data.list[24].weather[`0`].main,
-      })
+        countryWeatherFourthDayIcon: response3.data.list[24].weather[`0`].icon,
+        countryWeatherFourthDayTemperature: Math.round(
+          response3.data.list[24].main.temp
+        ),
+        countryWeatherFourthDay: response3.data.list[24].weather[`0`].main,
+      });
       setweatherFifthDay({
-        countryWeatherFifthDayIcon : response3.data.list[32].weather[`0`].icon,
-        countryWeatherFifthDayTemperature : Math.round(response3.data.list[32].main.temp),
-        countryWeatherFifthDay : response3.data.list[32].weather[`0`].main,
-      })
+        countryWeatherFifthDayIcon: response3.data.list[32].weather[`0`].icon,
+        countryWeatherFifthDayTemperature: Math.round(
+          response3.data.list[32].main.temp
+        ),
+        countryWeatherFifthDay: response3.data.list[32].weather[`0`].main,
+      });
     } catch (error) {
       alert("The country you set doesn't exist in the OpenWeather Database");
     }
   };
 
-  if(countryData.countryName !== undefined && checkButtonState === false){
-    setbtnStateFiveDayForecast("button5DayForecast")
-    setcheckButtonState(true)
+  if (countryData.countryName !== undefined && checkButtonState === false) {
+    setbtnStateFiveDayForecast("button5DayForecast");
+    setcheckButtonState(true);
   }
 
   const handleInput = (event) => {
     event.preventDefault();
     extractData();
     setdisabled5DaysBtn(false);
-    setextraElementsTodayForecast("extraElements")
+    setextraElementsTodayForecast("extraElements");
   };
 
   const handle5DaysButton = (press) => {
@@ -110,57 +128,60 @@ export default function App() {
     setelementsTodayForecast("elementsHide");
     setdisabled5DaysBtn(true);
     setdisabledBtn(true);
-    sethideCountryImg("hideCountryImg")
-    setbtnStateFiveDayForecast("buttonHide5DayForecast")
-    setextraElementsTodayForecast("hideExtraElements")
+    sethideCountryImg("hideCountryImg");
+    setbtnStateFiveDayForecast("buttonHide5DayForecast");
+    setextraElementsTodayForecast("hideExtraElements");
     //Setting animation wait 1 sec
     setTimeout(() => {
-      setextraElementsTodayForecast("extraElements")
-        setbtnStateFiveDayForecast("button5DayForecast")
-        sethideElementFiveDayForecast("allElementsFiveDayForecastShow")
-        setdisabledBtn(false);
-        sethideCountryImg("countryImg")
-     }, 1000);
+      setextraElementsTodayForecast("extraElements");
+      setbtnStateFiveDayForecast("button5DayForecast");
+      sethideElementFiveDayForecast("allElementsFiveDayForecastShow");
+      setdisabledBtn(false);
+      sethideCountryImg("countryImg");
+    }, 1000);
     setelementsFiveDayForecast("allElementsFiveDayForecastTransition");
   };
 
   const handleTodayButton = (press) => {
     press.preventDefault();
-    sethideElementFiveDayForecast("fiveDayForecastHide")
+    sethideElementFiveDayForecast("fiveDayForecastHide");
     setdisabled5DaysBtn(true);
     setdisabledBtn(true);
-    sethideCountryImg("hideCountryImg")
-    setbtnStateFiveDayForecast("buttonHide5DayForecast")
-    setextraElementsTodayForecast("hideExtraElements")
-    sethideElementFiveDayForecast("allElementsFiveDayForecastHide")
+    sethideCountryImg("hideCountryImg");
+    setbtnStateFiveDayForecast("buttonHide5DayForecast");
+    setextraElementsTodayForecast("hideExtraElements");
+    sethideElementFiveDayForecast("allElementsFiveDayForecastHide");
     //Setting animation wait 1 sec
 
     setTimeout(() => {
-      setextraElementsTodayForecast("extraElements")
-      setbtnStateFiveDayForecast("button5DayForecast")
+      setextraElementsTodayForecast("extraElements");
+      setbtnStateFiveDayForecast("button5DayForecast");
       setelementsTodayForecast("elements");
       setdisabled5DaysBtn(false);
-      sethideCountryImg("countryImg")
-   }, 1000);
+      sethideCountryImg("countryImg");
+    }, 1000);
 
     setelementsFiveDayForecast("allElementsTransitionAnim");
   };
 
   if (countryData.countryWeatherType === "Clouds") {
-      backgroundClass = "background-cloudy";
+    backgroundClass = "background-cloudy";
   } else if (countryData.countryWeatherType === "Clear") {
     backgroundClass = "background-clear";
   } else if (countryData.countryWeatherType === "Snow") {
     backgroundClass = "background-snowy";
   } else if (countryData.countryWeatherType === "Rain") {
     backgroundClass = "background-rainy";
-  } else if(countryData.countryName !== undefined){
-    setbtnStateFiveDayForecast("button5DayForecast")
+  } else if (countryData.countryName !== undefined) {
+    setbtnStateFiveDayForecast("button5DayForecast");
   }
 
   return (
     <>
       <div className={backgroundClass}></div>
+        <div className="userState">
+          <UserState />
+        </div>
       <div className={elementsFiveDayForecast}>
         <div className={hideCountryImg}>
           <CountryFlag
@@ -181,38 +202,55 @@ export default function App() {
         </div>
         <div className={extraElementsTodayForecast}>
           <WeatherElements2
-             countryNameV={countryData.countryName}
-             countryNameAbvV={countryData.countryNameAbv}
-             countryTimeV={countryData.countryTime}
-             countryDateV={countryData.countryDate}
-             countryDayOfWeekV={countryData.countryDayOfWeek}
+            countryNameV={countryData.countryName}
+            countryNameAbvV={countryData.countryNameAbv}
+            countryTimeV={countryData.countryTime}
+            countryDateV={countryData.countryDate}
+            countryDayOfWeekV={countryData.countryDayOfWeek}
           />
         </div>
 
-        <div className ={hideElementFiveDayForecast}>
-          <FiveDayForecast 
-          countryDateV={countryData.countryDate}
-          countryWeatherTodayV = {weatherToday.countryWeatherToday}
-          countryWeatherTodayIconV = {weatherToday.countryWeatherTodayIcon}
-          countryWeatherTodayTemperatureV = {weatherToday.countryWeatherTodayTemperature}
-          countryWeatherSecondDayV = {weatherSecondDay.countryWeatherSecondDay}
-          countryWeatherSecondDayIconV = {weatherSecondDay.countryWeatherSecondDayIcon}
-          countryWeatherSecondDayTemperatureV = {weatherSecondDay.countryWeatherSecondDayTemperature}
-          countryWeatherThirdDayV = {weatherThirdDay.countryWeatherThirdDay}
-          countryWeatherThirdDayIconV = {weatherThirdDay.countryWeatherThirdDayIcon}
-          countryWeatherThirdDayTemperatureV = {weatherThirdDay.countryWeatherThirdDayTemperature}
-          countryWeatherFourthDayV = {weatherFourthDay.countryWeatherFourthDay}
-          countryWeatherFourthDayIconV = {weatherFourthDay.countryWeatherFourthDayIcon}
-          countryWeatherFourthDayTemperatureV = {weatherFourthDay.countryWeatherFourthDayTemperature}
-          countryWeatherFifthDayV = {weatherFifthDay.countryWeatherFifthDay}
-          countryWeatherFifthDayIconV = {weatherFifthDay.countryWeatherFifthDayIcon}
-          countryWeatherFifthDayTemperatureV = {weatherFifthDay.countryWeatherFifthDayTemperature}
+        <div className={hideElementFiveDayForecast}>
+          <FiveDayForecast
+            countryDateV={countryData.countryDate}
+            countryWeatherTodayV={weatherToday.countryWeatherToday}
+            countryWeatherTodayIconV={weatherToday.countryWeatherTodayIcon}
+            countryWeatherTodayTemperatureV={
+              weatherToday.countryWeatherTodayTemperature
+            }
+            countryWeatherSecondDayV={weatherSecondDay.countryWeatherSecondDay}
+            countryWeatherSecondDayIconV={
+              weatherSecondDay.countryWeatherSecondDayIcon
+            }
+            countryWeatherSecondDayTemperatureV={
+              weatherSecondDay.countryWeatherSecondDayTemperature
+            }
+            countryWeatherThirdDayV={weatherThirdDay.countryWeatherThirdDay}
+            countryWeatherThirdDayIconV={
+              weatherThirdDay.countryWeatherThirdDayIcon
+            }
+            countryWeatherThirdDayTemperatureV={
+              weatherThirdDay.countryWeatherThirdDayTemperature
+            }
+            countryWeatherFourthDayV={weatherFourthDay.countryWeatherFourthDay}
+            countryWeatherFourthDayIconV={
+              weatherFourthDay.countryWeatherFourthDayIcon
+            }
+            countryWeatherFourthDayTemperatureV={
+              weatherFourthDay.countryWeatherFourthDayTemperature
+            }
+            countryWeatherFifthDayV={weatherFifthDay.countryWeatherFifthDay}
+            countryWeatherFifthDayIconV={
+              weatherFifthDay.countryWeatherFifthDayIcon
+            }
+            countryWeatherFifthDayTemperatureV={
+              weatherFifthDay.countryWeatherFifthDayTemperature
+            }
           />
         </div>
-
         <div className="title">
           <div className="submitCountry">
-            <form action='' onSubmit={handleInput}>
+            <form action="" onSubmit={handleInput}>
               <input
                 type="text"
                 value={countryBox}
@@ -223,11 +261,22 @@ export default function App() {
             </form>
           </div>
         </div>
+
+
+
         <div className={btnStateFiveDayForecast}>
-          <button className="button5dayForecast" disabled={disabled5DaysBtn} onClick={handle5DaysButton}>
+          <button
+            className="button5dayForecast"
+            disabled={disabled5DaysBtn}
+            onClick={handle5DaysButton}
+          >
             5 DAYS
           </button>
-          <button className="buttonTodayForecast" disabled={disabledBtn} onClick={handleTodayButton}>
+          <button
+            className="buttonTodayForecast"
+            disabled={disabledBtn}
+            onClick={handleTodayButton}
+          >
             Today
           </button>
         </div>

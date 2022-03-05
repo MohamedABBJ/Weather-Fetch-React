@@ -662,3 +662,15 @@ input[type="text"] {
                     left:  90px;
                 }
             }
+
+
+.login{
+    position: absolute;
+    top: 0;
+    width: 300px;
+
+}
+
+.signInBtn{
+    position: absolute;
+}
