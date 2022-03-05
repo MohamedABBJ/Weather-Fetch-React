@@ -7,7 +7,8 @@ const UserLoggedIn = () =>{
     }
       
     return (
-        <div>
+        <>
+        <div className="login">
                
             {
                 "Welcome " + auth.currentUser.displayName
@@ -17,6 +18,8 @@ const UserLoggedIn = () =>{
                 Logout
             </button>
         </div>
+        </>
+            
     );
 }
 

@@ -663,17 +663,14 @@ input[type="text"] {
                 }
             }
 
+
 .login{
-    position: relative;
-    top: -600px;
-    right: 150px;
+    position: absolute;
+    top: 0;
+    width: 300px;
+
 }
 
-.chat{
-    position: relative;
-    right: 150px;
-    
-}
-.chatBtn{
-    padding: 10px 120px;
+.signInBtn{
+    position: absolute;
 }

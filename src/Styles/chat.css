@@ -1,0 +1,44 @@
+.chat{
+    overflow: scroll;
+    z-index: 1;
+    height: 400px;
+    width: 350px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid black 3px;
+}
+
+.message{
+    display: flex;
+    bottom: 0px;
+    margin-left: 5px;
+    
+}
+
+.message img{
+    border: solid black 2px;
+    border-radius: 50px;
+}
+
+.message #messagetext{
+    margin-left: 5px;
+}
+
+#messageBox{
+    width: 300px;
+}
+.messageInput{
+    width: 500px;
+    
+}
+
+.chatComponent{
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+}
+
+.userName{
+    margin-left: 3px;
+}
+

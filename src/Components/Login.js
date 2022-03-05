@@ -1,5 +1,5 @@
 import { auth, provider } from "../Service/firebase"
-
+import "../Styles/weather.css";
 
 const Login = () =>{
 
@@ -9,7 +9,7 @@ const Login = () =>{
     }
 
     return(
-        <div>
+        <div className="signInBtn">
             <button onClick={signInWithGoogle}>Sign in with google</button>
         </div>
     )
