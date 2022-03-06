@@ -13,50 +13,56 @@ const Chat = () =>{
     const messagesRef = firebase.firestore().collection('messages')
     const query = messagesRef.orderBy("createdAt").limitToLast(25);
     const scroll = useRef()
-    const [messages] = useCollectionData(query, {idField: "id"})
+    const [messages] = useCollectionData(query, { idField: 'id' });
 
-    const [expandChat, setexpandChat] = useState(false)
-    const [messageValue, setmessageValue] = useState("")
+    const [expandChat, setexpandChat] = useState(true)
+    const [chatState, setchatState] = useState('hideChatComponent')
+    const [messageValue, setmessageValue] = useState('')
 
     const handleChatBtn = (e) =>{
       e.preventDefault()
       
       if(expandChat === false){
         setexpandChat(true)
+        setchatState("hideChatComponent")
       }else{
         setexpandChat(false)
+        setchatState("chatComponent")
       }
 
     }
-
+    
     const handleChatMessage = async (e) =>{
 
       e.preventDefault()
       
       const {uid, photoURL} = auth.currentUser
 
-      await messagesRef.add({
-        text: messageValue,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        userName: auth.currentUser.displayName,
-        uid,
-        photoURL
-      })
+      if(messageValue === ""){
+        alert("Esta vacio")
+      }else{
+        await messagesRef.add({
+          text: messageValue,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          userName: auth.currentUser.displayName,
+          uid,
+          photoURL,
+        })
+  
+        setmessageValue('')
+      }
 
-      setmessageValue('')
 
     }
-
     useEffect(() => {
       scroll.current.scrollIntoView({behavior:'smooth'})
     },[messages])
     
-
   return(
     <>
-    <div className="chatComponent">
+    <div className={chatState}>
       <div className="chat">
-      {messages && messages.map(msg => <ChatMessage message={msg} />)}
+      {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
       <span ref={scroll}></span>
       </div>
 
@@ -68,10 +74,10 @@ const Chat = () =>{
       <button type="submit">send</button>
       
       </form>
-      <button onClick={handleChatBtn}>Chat</button>
       </div>
     </div>
 
+      <button className="chatBtn" onClick={handleChatBtn}>Chat</button>
     </>
   )
 }
@@ -81,11 +87,10 @@ const Chat = () =>{
 
     return(<>
       <p className="userName">{userName}</p>
-    <div className="message">
+      <div className="message">
       <img src={photoURL} width="50px" alt="" srcset="" />
       <p id="messagetext">{text}</p>
       </div>
-
     </>)
 
   }
@@ -93,23 +98,3 @@ const Chat = () =>{
 
 
 export default Chat
-
-/*
-const ChatRoom = ({user = null}) => {
-  const [messages, setMessages] = useState([])
-
-  const db = firebase.firestore()
-  const query = db.collection('messages').orderBy('createdAt').limit(100);
-
-  useEffect(() => {
-    const unsubscribe = query.onSnapshot(querySnapshot =>{
-      const date = querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id}))
-    }
-      second
-    }
-  }, [third])
-  
-  return <ul></ul>
-}
-
-export default ChatRoom */

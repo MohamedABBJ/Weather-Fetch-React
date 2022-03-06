@@ -47,7 +47,13 @@ let WeatherElements = (props) => {
   }
 
   if (props.countryTimeV === undefined) {
-    return <div>{console.log("Probando")}</div>;
+    return(    
+    <div className={'firstMessage'}>
+    <h1>Write a country or location to make a search</h1>
+    <h1>Format (city name or country) + , + 2 letter country code</h1>
+    <h1>Example: Florida, US</h1>
+  </div>)    
+
   }
 
   return (
@@ -68,7 +74,7 @@ let WeatherElements = (props) => {
         <p>{sunriseTime}</p>
       </div>
 
-      <div className={`removeFirstMessage`}>
+      <div className={'removeFirstMessage'}>
         <h1>Write a country or location to make a search</h1>
         <h1>Format (city name or country) + , + 2 letter country code</h1>
         <h1>Example: Florida, US</h1>

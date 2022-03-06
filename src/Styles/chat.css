@@ -1,5 +1,5 @@
 .chat{
-    overflow: scroll;
+    overflow: auto;
     z-index: 1;
     height: 400px;
     width: 350px;
@@ -25,20 +25,38 @@
 }
 
 #messageBox{
-    width: 300px;
+    width: 305px;
 }
 .messageInput{
-    width: 500px;
+    width: 360px;
     
 }
 
 .chatComponent{
     position: absolute;
-    bottom: 0;
+    width: 200px;
+    bottom: 20px;
     z-index: 1;
 }
-
+.hideChatComponent{
+    position: absolute;
+    bottom: 20px;
+    z-index: 1;
+    opacity: 0;
+}
 .userName{
     margin-left: 3px;
 }
 
+.chatBtn{
+    position: absolute;
+    bottom: 0;
+    width: 358px;
+}
+
+@media only screen and (max-width: 940px) {
+    .chat{
+            
+            height: 300px;
+        }
+    }

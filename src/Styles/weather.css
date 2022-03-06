@@ -290,7 +290,7 @@ input[type="text"] {
     left: 0px;
     right: 0px;
     bottom: 50px;
-    opacity: 0;
+    opacity: 1;
     animation-name: elementsShowAnim;
     animation-fill-mode: forwards;
     animation-duration: 1s;
@@ -447,7 +447,7 @@ input[type="text"] {
     border: solid black;
     border-radius: 20px;
     background: rgba(45, 143, 89, 0.6);
-    opacity: 0;
+    opacity: 1;
     position: absolute;
     bottom: 100px;
     animation-name: finishMessage;
@@ -489,6 +489,14 @@ input[type="text"] {
     0% {opacity: 0;}
     100% {opacity: 1;}
 }
+
+@media only screen and (max-width: 940px) {
+    .firstMessage, .removeFirstMessage{
+           
+            width: 300px;
+            bottom: -40px;
+        }
+    }
 
 .button5DayForecast{
     opacity: 1;

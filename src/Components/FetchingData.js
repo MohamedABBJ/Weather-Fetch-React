@@ -7,7 +7,6 @@ import WeatherElements from "./WeatherElements";
 import FiveDayForecast from "./5DayForecast";
 import WeatherElements2 from "./WeatherElements2";
 import UserState from "./UserSate";
-import Chat from "./Chat";
 
 export default function App() {
   const [countryData, setCountryData] = useState({});
@@ -33,7 +32,6 @@ export default function App() {
     "buttonHide5DayForecast"
   );
   const [hideCountryImg, sethideCountryImg] = useState("countryImg");
-  const [user, setuser] = useState(null);
 
   let backgroundClass = "background-img";
 
